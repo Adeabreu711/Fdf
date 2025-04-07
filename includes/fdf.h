@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/06 19:12:36 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:12:54 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,16 @@ typedef struct s_point
 	int	z;
 	int	color;
 }	t_point;
+
+typedef struct	s_imgd {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_imgd;
+
+void	my_mlx_pixel_put(t_imgd *data, int x, int y, int color);
+void	draw_line(t_imgd *img, t_point p1, t_point p2);
 
 #endif

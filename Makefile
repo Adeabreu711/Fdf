@@ -6,19 +6,19 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/06 18:05:31 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/07 17:23:05 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -g3 #-Wall -Wextra -Werror -g3
 MLXFLAGS = -lXext -lX11 -lm -Lminilibx-linux -lmlx_Linux
 LIB = libft/libft.a
 MLX = minilibx-linux/libmlx_Linux.a
 
 SRC = \
-	fdf.c
+	fdf.c mlx_utils.c
 
 SRC_BONUS = \
 
