@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/07 17:23:05 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/09 18:18:50 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB = libft/libft.a
 MLX = minilibx-linux/libmlx_Linux.a
 
 SRC = \
-	fdf.c mlx_utils.c
+	fdf.c mlx_utils.c mlx_setup.c draw_line.c parsing.c
 
 SRC_BONUS = \
 

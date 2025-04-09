@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:16:01 by alexandre         #+#    #+#             */
-/*   Updated: 2025/04/07 17:41:41 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:46:57 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ int		ft_abs(int n);
 char	*ft_get_next_line(int fd);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_sign(int nb);
+int		ft_is_space(char c);
+int		ft_is_sign(char c);
 
 #endif

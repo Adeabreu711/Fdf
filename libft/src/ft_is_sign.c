@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   ft_is_sign.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 19:06:35 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/09 17:32:47 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/09 20:45:05 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/09 20:46:37 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-
-void	my_mlx_pixel_put(t_imgd *img, int x, int y, int color)
+int	ft_is_sign(char c)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	return ((c == '-' || c == '+'));
 }
-
-// void	rgb_to_int(int r, int g, int b)
-// {
-
-// }
