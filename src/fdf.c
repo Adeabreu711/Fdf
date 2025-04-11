@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/09 18:28:51 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:54:23 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	main(int argc, char *argv[])
 	t_point	**map;
 
 	if (argc != 2)
-		return (0);
+		return (1);
 	if (!mlx_setup_img(&mlx, &window, &img))
-		return (0);
+		return (1);
 	map = parsing_map(open(argv[1], O_RDONLY));
+	if (!map)
+		return (ft_printf("error"), 1);
 	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 	mlx_loop(mlx);
 	return (free_mlx(mlx, window, ""));

@@ -6,72 +6,55 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:06:15 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/09 20:49:25 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:52:45 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-char	*get_map(int fd)
-{
-	t_sbuild	*sb;
-	char		*map;
-	char		*line;
+// t_point	get_point_info(char *info)
+// {
+// 	ft_atoi(*info);
+// }
 
-	line = NULL;
-	sb = ft_sbnew("");
-	if (!sb)
-		return (NULL);
-	while (1)
-	{
-		line = ft_get_next_line(fd);
-		if (!line)
-			break ;
-		ft_sb_addstr(&sb, line, ft_strlen(line));
-		free(line);
-	}
-	map = ft_sb_build(sb);
-	ft_get_next_line(-1);
-	ft_sbclear(&sb);
-	close(fd);
-	return (map);
-}
-
-int	points_len(char *map)
+t_point	*get_points(char *map, int map_size)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		j;
+	t_point	*points;
 
 	i = -1;
-	count = 0;
-	while (map[++i])
-	{
-		if (ft_is_space(map[i]))
-			continue ;
-		else if ((ft_is_sign(map[i]) || ft_isdigit(map[i]))
-			&& (ft_is_space(map[i - 1]) || !map[i]))
-			{
-				printf("bruh\n");
-				count++;
-			}
-	}
-	return (count);
+	j = 0;
+	points = ft_calloc(map_size + 1, sizeof(t_point));
+	if (!points)
+		return (NULL);
+
+	// while (map[++i])
+	// {
+	// 	if (ft_is_space(map[i]))
+	// 		continue ;
+	// 	else if ((ft_is_sign(map[i]) || ft_isdigit(map[i]))
+	// 		&& (!i || ft_is_space(map[i - 1])))
+	// 		points = get_point_info(map + i);
+	// }
+	return (points);
 }
 
-t_point	**get_points(char *map)
-{
-	t_point		**points;
-}
-
-t_point	**parsing_map(int fd)
+t_point	*parsing_map(int fd)
 {
 	char		*map;
-	t_point		**points;
-	int			size;
+	t_point		*points;
+	int			map_size;
+	int			line_size;
 
+	line_size = 0;
 	map = get_map(fd);
 	if (!map)
 		return (NULL);
+	map_size =  get_map_size(map, &line_size);
+	// if (!map_size || line_size == 0)
+	// 	return (NULL);
 	printf("%s\n", map);
-	printf ("points_lenn : %i\n", points_len(map));
+	printf ("points_len : %i\n", map_size);
+	get_points(map, map_size);
 }
