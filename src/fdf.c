@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/11 18:54:23 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:15:25 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 	void	*mlx;
 	void	*window;
 	t_imgd	img;
-	t_point	**map;
+	t_point	*map;
 
 	if (argc != 2)
 		return (1);

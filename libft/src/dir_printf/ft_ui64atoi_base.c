@@ -6,13 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:18:16 by alexandre         #+#    #+#             */
-/*   Updated: 2025/02/07 12:05:58 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:07:41 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int	base_contain(char c, char *base)
+static int	ui64_base_contain(char c, char *base)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	base_contain(char c, char *base)
 	return (-1);
 }
 
-int	check_base(char *base)
+static int	ui64_check_base(char *base)
 {
 	int	i;
 	int	j;
@@ -67,18 +67,18 @@ t_uint64	ft_ui64atoi_base(char *str, char *base)
 	i = 0;
 	result = 0;
 	base_len = ft_strlen(base);
-	if (!check_base(base))
+	if (!ui64_check_base(base))
 		return (0);
 	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == ' '))
 		i++;
 	while (str[i] && (str[i] == '-' || str[i] == '+'))
 		i++;
-	digit = base_contain(str[i], base);
+	digit = ui64_base_contain(str[i], base);
 	while (str[i] && digit >= 0)
 	{
 		result = result * base_len + digit;
 		i++;
-		digit = base_contain(str[i], base);
+		digit = ui64_base_contain(str[i], base);
 	}
 	return (result);
 }

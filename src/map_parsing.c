@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:51:52 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/11 19:53:32 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:48:55 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,17 @@ int	get_map_size(char *map, int *out_line_size)
 {
 	int	i;
 	int	count;
-	int	line_size;
-	int	line_count;
 
 	i = -1;
 	count = 0;
-	line_size = -1;
-	line_count = 0;
+	*out_line_size = -1;
 	while (map[++i])
 	{
 		if (ft_is_space(map[i]))
 		{
 			if (map[i] == '\n')
-				line_size = check_valid_size(count, line_size);
-			if (!line_size)
+				*out_line_size= check_valid_size(count, *out_line_size);
+			if (!*out_line_size)
 				return (ERROR);
 		}
 		else if ((ft_is_sign(map[i]) || ft_isdigit(map[i]))
