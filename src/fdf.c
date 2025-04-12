@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:15:25 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 20:20:02 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 
 int	main(int argc, char *argv[])
 {
-	void	*mlx;
-	void	*window;
-	t_imgd	img;
-	t_point	*map;
+	t_mlxinfo	mlx;
+	// void	*mlx;
+	// void	*window;
+	// t_imgd	img;
+	t_point	*points;
 
 	if (argc != 2)
 		return (1);
-	if (!mlx_setup_img(&mlx, &window, &img))
+	if (!mlx_setup_img(&mlx))
 		return (1);
-	map = parsing_map(open(argv[1], O_RDONLY));
-	if (!map)
+	points = parse_map(open(argv[1], O_RDONLY));
+	if (!points)
 		return (ft_printf("error"), 1);
-	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
-	mlx_loop(mlx);
-	return (free_mlx(mlx, window, ""));
+	// debug_points(points);
+	// printf("point 1 : %i,%i,%i\n", points[0].x, points[0].y, points[0].z);
+	put_img_to_window(&mlx, 0, 0);
+	mlx_loop(mlx.mlx);
+	return (free(points) ,free_mlx(&mlx, ""));
 }
 
 	// int res = 32;

@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:06:15 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:26:19 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:48:58 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	check_hexa_color(char *color)
 		return (0);
 	while (ft_strchr("0123456789ABCDEF", color[i]))
 		i++;
-	printf("color count: %i\n", i);
 	if (i == 8)
 		return (1);
 	return (0);
 }
+
 int	check_info(char *info)
 {
 	int	i;
@@ -101,7 +101,7 @@ t_point	*get_points(char *map, int map_size, int line_size)
 	return (points);
 }
 
-t_point	*parsing_map(int fd)
+t_point	*parse_map(int fd)
 {
 	char		*map;
 	t_point		*points;
@@ -116,6 +116,10 @@ t_point	*parsing_map(int fd)
 	printf("%s\n", map);
 	printf("map size : %i, line_size : %i\n", map_size, line_size);
 	if (!map_size || line_size == 0)
-		return (NULL);
+		return (free(map), NULL);
 	points = get_points(map, map_size, line_size);
+	if (!points)
+		return (free(map), NULL);
+	free(map);
+	return (points);
 }

@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/11 19:53:45 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/12 20:20:51 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,23 @@ typedef struct	s_imgd {
 	int		endian;
 }	t_imgd;
 
+typedef struct	s_mlxinfo
+{
+	void	*mlx;
+	void	*window;
+	t_imgd	img;
+}	t_mlxinfo;
+
 void		my_mlx_pixel_put(t_imgd *data, int x, int y, int color);
 void		draw_line(t_imgd *img, t_point p1, t_point p2);
-t_point		*parsing_map(int fd);
+t_point		*parse_map(int fd);
 char		*get_map(int fd);
 int			get_map_size(char *map, int *out_line_size);
 
+void		debug_points(t_point *points);
 
-int			free_mlx(void *mlx, void *window, char *err_msg);
-int			mlx_setup_img(void **mlx, void **window, t_imgd *img);
+int			free_mlx(t_mlxinfo *mlx, char *err_msg);
+int			mlx_setup_img(t_mlxinfo *mlx);
+void		put_img_to_window(t_mlxinfo *mlx, int x, int y);
 
 #endif
