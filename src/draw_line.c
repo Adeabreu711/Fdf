@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:42 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/09 20:07:26 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:55:26 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	draw_ascending(t_imgd *img, t_point p1, t_point p2)
 	{
 		// if (cursor == p2.y + ft_sign(p2.y - p1.y) - ft_sign(p2.y - p1.y) || cursor == p1.y)
 		// 	printf("draw at (%f, %i)\n", a * cursor + b, cursor);
-		my_mlx_pixel_put(img, a * cursor + b, cursor, 0xFFFFFF);
+
+		put_pixel(img, a * cursor + b, cursor, 0xFFFFFF);
 		cursor += ft_sign(p2.y - p1.y);
 	}
 	// printf ("\n");
@@ -57,7 +58,7 @@ static void	draw_descending(t_imgd *img, t_point p1, t_point p2)
 	{
 		// if (cursor == p2.x + ft_sign(p2.x - p1.x) - ft_sign(p2.x - p1.x) || cursor == p1.x)
 		// 	printf("draw at (%i, %f)\n", cursor, a * cursor + b);
-		my_mlx_pixel_put(img, cursor, a * cursor + b, 0xFFFFFF);
+		put_pixel(img, cursor, a * cursor + b, 0xFFFFFF);
 		cursor += ft_sign(p2.x - p1.x);
 	}
 	// printf ("\n");

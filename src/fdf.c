@@ -6,34 +6,37 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/12 20:20:02 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:03:31 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
+#define SCALE 10
+
 int	main(int argc, char *argv[])
 {
 	t_mlxinfo	mlx;
-	// void	*mlx;
-	// void	*window;
-	// t_imgd	img;
-	t_point	*points;
+	t_map	map;
 
-	if (argc != 2)
+	if (argc != 2 || !mlx_setup_img(&mlx))
 		return (1);
-	if (!mlx_setup_img(&mlx))
-		return (1);
-	points = parse_map(open(argv[1], O_RDONLY));
-	if (!points)
+	if (!parse_map(open(argv[1], O_RDONLY), &map))
 		return (ft_printf("error"), 1);
+	scale_map(&map, SCALE);
 	// debug_points(points);
-	// printf("point 1 : %i,%i,%i\n", points[0].x, points[0].y, points[0].z);
+	// printf("point 1 : %i,%i,%i\n", map.pts[28].x, map.pts[28].y, map.pts[28].z);
+	display_points(&mlx.img, map);
 	put_img_to_window(&mlx, 0, 0);
 	mlx_loop(mlx.mlx);
-	return (free(points) ,free_mlx(&mlx, ""));
+	return (free(map.pts) ,free_mlx(&mlx, ""));
 }
+
+// t_point p0 = {220, 220, 0, 0xFFFFFF};
+// t_point p1 = {220, 20, 0, 0xFFFFFF};
+
+// draw_line(&mlx.img, p0, p1);
 
 	// int res = 32;
 	// for (int k = 0; k < res; k++) {

@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/12 19:06:30 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/14 19:48:16 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIB = libft/libft.a
 MLX = minilibx-linux/libmlx_Linux.a
 
 SRC = \
-	fdf.c mlx_utils.c mlx_setup.c draw_line.c parsing.c map_parsing.c debug.c
+	fdf.c mlx_utils.c mlx_setup.c draw_line.c point_parsing.c \
+	map_parsing.c debug.c display_points.c map_utils.c
 
 SRC_BONUS = \
 

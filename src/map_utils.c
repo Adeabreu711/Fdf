@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/06 19:06:35 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/14 19:40:11 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/14 19:47:53 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/14 19:55:03 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	put_pixel(t_imgd *img, int x, int y, int color)
+static void	scale_point(t_point *pt, float scale)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if (!pt)
+		return ;
+	pt->x *= scale;
+	pt->y *= scale;
+	pt->z *= scale;
 }
 
-// void	rgb_to_int(int r, int g, int b)
-// {
+void	scale_map(t_map *map, float scale)
+{
+	int	i;
 
-// }
+	if (!map)
+		return ;
+	i = -1;
+	while (++i < map->size)
+		scale_point(&map->pts[i], scale);
+}

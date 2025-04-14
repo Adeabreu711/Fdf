@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/12 20:20:51 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:58:25 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_point
 	int	color;
 }	t_point;
 
+typedef struct	s_map
+{
+	int		size;
+	int		row_len;
+	t_point	*pts;
+}	t_map;
+
 typedef struct	s_imgd {
 	void	*img;
 	char	*addr;
@@ -46,11 +53,14 @@ typedef struct	s_mlxinfo
 	t_imgd	img;
 }	t_mlxinfo;
 
-void		my_mlx_pixel_put(t_imgd *data, int x, int y, int color);
+void		put_pixel(t_imgd *data, int x, int y, int color);
 void		draw_line(t_imgd *img, t_point p1, t_point p2);
-t_point		*parse_map(int fd);
-char		*get_map(int fd);
-int			get_map_size(char *map, int *out_line_size);
+
+void		scale_map(t_map *map, float scale);
+int			display_points(t_imgd *img, t_map map);
+
+int			parse_map(int fd, t_map *map);
+t_point		*get_points(char *r_map, int map_size, int raw_len);
 
 void		debug_points(t_point *points);
 
