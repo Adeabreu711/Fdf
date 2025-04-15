@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/15 19:14:03 by alex             ###   ########.fr       */
+/*   Created: 2025/04/15 18:55:09 by alex              #+#    #+#             */
+/*   Updated: 2025/04/15 18:57:45 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#ifndef VECTOR_H
+# define VECTOR_H
 
-void	debug_points(t_point3 *points)
+# define SB_SIZE 128
+
+# include "libft.h"
+
+typedef struct s_ivec3
 {
-	int	i;
+	int		x;
+	int		y;
+	int		z;
+}	t_ivec3;
 
-	i = -1;
-	while (points[++i].v3.x)
-	{
-		ft_printf("(%i,%i,%i,%i)\n",points[i].v3.x,
-			points[i].v3.y, points[i].v3.z, points[i].color);
-	}
-}
+typedef struct s_ivec2
+{
+	int		x;
+	int		y;
+}	t_ivec2;
+
+#endif

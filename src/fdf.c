@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/14 20:03:31 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:50:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int	main(int argc, char *argv[])
 {
 	t_mlxinfo	mlx;
 	t_map	map;
+	t_cam	dsp;
 
 	if (argc != 2 || !mlx_setup_img(&mlx))
 		return (1);
 	if (!parse_map(open(argv[1], O_RDONLY), &map))
 		return (ft_printf("error"), 1);
+	init_cam(map, mlx.w_dim, dsp);
 	scale_map(&map, SCALE);
+
 	// debug_points(points);
 	// printf("point 1 : %i,%i,%i\n", map.pts[28].x, map.pts[28].y, map.pts[28].z);
 	display_points(&mlx.img, map);

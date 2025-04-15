@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/15 19:14:03 by alex             ###   ########.fr       */
+/*   Created: 2025/04/15 20:48:14 by alex              #+#    #+#             */
+/*   Updated: 2025/04/15 20:56:43 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	debug_points(t_point3 *points)
+t_ivec2	project_flat(t_ivec3 v3)
 {
-	int	i;
+	t_ivec2 v2;
 
-	i = -1;
-	while (points[++i].v3.x)
-	{
-		ft_printf("(%i,%i,%i,%i)\n",points[i].v3.x,
-			points[i].v3.y, points[i].v3.z, points[i].color);
-	}
+	v2.x = v3.x;
+	v2.y = v3.y;
+	return (v2);
 }

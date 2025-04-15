@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:06:15 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/14 19:43:24 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:14:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ int	check_info(char *info)
 
 }
 
-t_point	get_point_info(char *info, int id, int line_size)
+t_point3	get_point_info(char *info, int id, int line_size)
 {
 	int		i;
-	t_point	point;
+	t_point3	point;
 	int		format;
 
 	i = 0;
 	format = check_info(info);
 	if (!format)
 	{
-		point.x = -1;
+		point.v3.x = -1;
 		return (point);
 	}
-	point.x = id % line_size;
-	point.y = id / line_size;
-	point.z = ft_atoi(info);
+	point.v3.x = id % line_size;
+	point.v3.y = id / line_size;
+	point.v3.z = ft_atoi(info);
 	point.color = 0xFFFFFF;
 	// printf("x : %i, y : %i, z : %i\n", point.x, point.y, point.z);
 	if (format == 1)
@@ -74,15 +74,15 @@ t_point	get_point_info(char *info, int id, int line_size)
 	return (point);
 }
 
-t_point	*get_points(char *r_map, int map_size, int raw_len)
+t_point3	*get_points(char *r_map, int map_size, int raw_len)
 {
 	int		i;
 	int		j;
-	t_point	*points;
+	t_point3	*points;
 
 	i = -1;
 	j = 0;
-	points = ft_calloc(map_size + 1, sizeof(t_point));
+	points = ft_calloc(map_size + 1, sizeof(t_point3));
 	if (!points)
 		return (NULL);
 	while (r_map[++i])
@@ -93,7 +93,7 @@ t_point	*get_points(char *r_map, int map_size, int raw_len)
 			&& (!i || ft_is_space(r_map[i - 1])))
 			{
 				points[j] = get_point_info(r_map + i, j, raw_len);
-				if (!points[j].x == -1)
+				if (!points[j].v3.x == -1)
 					return (free(points), NULL);
 				j++;
 			}
