@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:18:53 by alex              #+#    #+#             */
-/*   Updated: 2025/04/15 20:25:57 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/16 16:52:48 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_mlxinfo
 }	t_mlxinfo;
 
 void		put_pixel(t_imgd *data, int x, int y, int color);
-void		draw_line(t_imgd *img, t_point3 p1, t_point3 p2);
+void		draw_line(t_imgd *img, t_point2 p1, t_point2 p2);
 
 int			free_mlx(t_mlxinfo *mlx, char *err_msg);
 int			mlx_setup_img(t_mlxinfo *mlx);

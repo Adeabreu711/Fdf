@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
+#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 15:16:24 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/09 20:47:14 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/16 17:38:03 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SB_S = dir_string_builder
-PF_S = dir_printf
+SB_D = dir_string_builder
+PF_D = dir_printf
+V_D = dir_vector
 
 SRC = \
 	ft_atoi.c ft_bzero.c ft_calloc.c ft_calloc.c ft_isalnum.c \
@@ -31,12 +32,14 @@ SRC = \
 	ft_digitcount_base.c ft_strupcase.c ft_abs.c ft_get_next_line.c \
 	ft_strcmp.c ft_sign.c ft_is_space.c ft_is_sign.c \
 	\
-	$(SB_S)/ft_string_builder.c $(SB_S)/ft_string_builder_utils.c \
+	$(SB_D)/ft_string_builder.c $(SB_D)/ft_string_builder_utils.c \
 	\
-	$(PF_S)/ft_parseformat.c $(PF_S)/ft_pfbuildchar.c $(PF_S)/ft_pfbuildhexa.c \
-	$(PF_S)/ft_pfbuildnb.c $(PF_S)/ft_pfbuildptr.c $(PF_S)/ft_pfbuildstr.c \
-	$(PF_S)/ft_pfbuildunsnb.c $(PF_S)/ft_pfnullcheck.c $(PF_S)/ft_printf.c \
-	$(PF_S)/ft_ui64convert_base.c $(PF_S)/ft_ui64atoi_base.c $(PF_S)/ft_ui64itoa.c
+	$(PF_D)/ft_parseformat.c $(PF_D)/ft_pfbuildchar.c $(PF_D)/ft_pfbuildhexa.c \
+	$(PF_D)/ft_pfbuildnb.c $(PF_D)/ft_pfbuildptr.c $(PF_D)/ft_pfbuildstr.c \
+	$(PF_D)/ft_pfbuildunsnb.c $(PF_D)/ft_pfnullcheck.c $(PF_D)/ft_printf.c \
+	$(PF_D)/ft_ui64convert_base.c $(PF_D)/ft_ui64atoi_base.c $(PF_D)/ft_ui64itoa.c \
+	\
+	$(V_D)/ft_iop.c $(V_D)/ft_ivec_op.c $(V_D)/ft_nivec.c
 
 BONUS = \
 	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
@@ -58,8 +61,9 @@ OBJ_BONUS = $(BONUS:.c=.o)
 #Création du dossier OBJ_DIR
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/$(SB_S)
-	mkdir -p $(OBJ_DIR)/$(PF_S)
+	mkdir -p $(OBJ_DIR)/$(SB_D)
+	mkdir -p $(OBJ_DIR)/$(PF_D)
+	mkdir -p $(OBJ_DIR)/$(V_D)
 
 #Compilation de la lib
 $(NAME): $(OBJ_DIR) $(OBJ)

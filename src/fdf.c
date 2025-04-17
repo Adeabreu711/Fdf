@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/15 20:50:07 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/16 21:03:22 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,29 @@ int	main(int argc, char *argv[])
 {
 	t_mlxinfo	mlx;
 	t_map	map;
-	t_cam	dsp;
+	t_cam	cam;
 
 	if (argc != 2 || !mlx_setup_img(&mlx))
 		return (1);
 	if (!parse_map(open(argv[1], O_RDONLY), &map))
 		return (ft_printf("error"), 1);
-	init_cam(map, mlx.w_dim, dsp);
-	scale_map(&map, SCALE);
-
-	// debug_points(points);
-	// printf("point 1 : %i,%i,%i\n", map.pts[28].x, map.pts[28].y, map.pts[28].z);
-	display_points(&mlx.img, map);
+	cam = init_cam(map, mlx.w_dim);
+	//
+	debug_map(map, 1);
+	debug_cam(cam, map.size, 0);
+	//
+	debug_center(mlx);
+	display_points(&mlx.img, cam, map);
+	debug_center(mlx);
 	put_img_to_window(&mlx, 0, 0);
 	mlx_loop(mlx.mlx);
 	return (free(map.pts) ,free_mlx(&mlx, ""));
 }
+
+// t_point2 p0 = {220, 220, 0xFFFFFF};
+// t_point2 p1 = {220, 20, 0xFFFFFF};
+
+// draw_line(&mlx.img, p0, p1);
 
 // t_point p0 = {220, 220, 0, 0xFFFFFF};
 // t_point p1 = {220, 20, 0, 0xFFFFFF};

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/15 20:58:10 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/16 20:37:11 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct	s_cam
 {
-	int			scale;
+	float		scale;
 	t_ivec2		offset;
 	t_point2	*pts;
 }	t_cam;
@@ -37,15 +37,18 @@ typedef struct	s_map
 }	t_map;
 
 t_ivec2		project_flat(t_ivec3 v3);
-void		init_cam(t_map map, t_ivec2 w_dim, t_cam cam);
-t_ivec2		get_center_offset(t_map map, t_ivec2 w_dim);
+t_ivec2		project_iso(t_cam cam, t_ivec3 v3);
+t_cam		init_cam(t_map map, t_ivec2 w_dim);
+t_ivec2		get_center_offset(t_map map, t_ivec2 w_dim, float scale);
 
-void		scale_map(t_map *map, float scale);
-int			display_points(t_imgd *img, t_map map);
+void		scale_cam(t_map *map, float scale);
+int			display_points(t_imgd *img, t_cam cam, t_map map);
 
 int			parse_map(int fd, t_map *map);
-t_point3		*get_points(char *r_map, int map_size, int raw_len);
+t_point3	*get_points(char *r_map, int map_size, int raw_len);
 
-void		debug_points(t_point3 *points);
+void		debug_center(t_mlxinfo mlx);
+void		debug_map(t_map map, int show_pts);
+void		debug_cam(t_cam cam, int map_size, int show_pts);
 
 #endif
