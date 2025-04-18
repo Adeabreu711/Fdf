@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:55:09 by alex              #+#    #+#             */
-/*   Updated: 2025/04/16 17:38:59 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/17 15:37:39 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ typedef struct s_ivec2
 	int		x;
 	int		y;
 }	t_ivec2;
+
+typedef struct s_fvec3
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_fvec3;
+
+typedef struct s_fvec2
+{
+	float	x;
+	float	y;
+}	t_fvec2;
 
 
 //Functions

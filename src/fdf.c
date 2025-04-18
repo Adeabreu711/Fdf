@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/16 21:03:22 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/19 00:28:15 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!parse_map(open(argv[1], O_RDONLY), &map))
 		return (ft_printf("error"), 1);
-	cam = init_cam(map, mlx.w_dim);
+	cam = init_cam(map, mlx.w_dim, project_iso);
 	//
-	debug_map(map, 1);
-	debug_cam(cam, map.size, 0);
+	debug_map(map, 0);
+	debug_cam(cam, map, 0);
 	//
-	debug_center(mlx);
 	display_points(&mlx.img, cam, map);
-	debug_center(mlx);
+	// debug_center(mlx);
+	// debug_prj_center(mlx, map, cam, project_iso);
+	// debug_corners(mlx, cam, map);
 	put_img_to_window(&mlx, 0, 0);
 	mlx_loop(mlx.mlx);
 	return (free(map.pts) ,free_mlx(&mlx, ""));
