@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:16:01 by alexandre         #+#    #+#             */
-/*   Updated: 2025/04/15 18:54:28 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/19 21:46:59 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int		ft_pfputnbr(int n);
 int		ft_atoi_base(char *str, char *base);
 char	*ft_convert_base(char *n, char *base_from, char *base_to);
 int		ft_digitcount_base(int dec, char *base_to);
-char	*ft_strupcase(char *str);
-char	*ft_strlowcase(char *str);
+char	*ft_strupcase(char *str, char *expt);
+char	*ft_strlowcase(char *str, char *expt);
 int		ft_intcomp(int i, int j, t_uint16 upper);
 int		ft_abs(int n);
 char	*ft_get_next_line(int fd);

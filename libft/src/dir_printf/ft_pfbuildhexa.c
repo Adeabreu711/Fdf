@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pfbuildhexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:01:33 by alex              #+#    #+#             */
-/*   Updated: 2025/03/07 19:40:06 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/19 21:49:23 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_pfbuildhexa(t_sbuild *out, t_conv *conv, t_uint32 nb)
 	temp = ft_set_tempunsnb(temp, conv, size, hexalen);
 	temp = ft_assign_hexa(temp, conv, nb, base);
 	if (conv->type == 'X')
-		temp = ft_strupcase(temp);
+		temp = ft_strupcase(temp, "");
 	ft_sb_addstr(&out, temp, size);
 	free(temp);
 	return (conv->lenght);

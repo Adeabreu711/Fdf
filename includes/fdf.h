@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/19 00:52:00 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/20 03:59:08 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,53 @@ typedef struct	s_map
 	t_point3	*pts;
 }	t_map;
 
-t_ivec2		project_flat(t_ivec3 v3);
-t_ivec2		project_iso(t_cam cam, t_ivec3 v3);
-t_cam		init_cam(t_map map, t_ivec2 dsp, t_ivec2(*f)(t_cam, t_ivec3));
-t_ivec2		get_center_offset(t_map map, t_cam cam, t_ivec2(*f)(t_cam, t_ivec3));
+//___________CAMERA___________
 
-void		scale_cam(t_map *map, float scale);
+//camera.c
+
+t_cam		init_cam(t_map map, t_ivec2 dsp, t_ivec2(*f)(t_cam, t_ivec3));
+t_ivec2		get_center_offset(t_map map, t_cam cam, t_ivec2	*min_max);
+
+//camera_utils.c
+
+t_cam		new_cam(t_point2 *pts, t_ivec2 dsp);
+void		free_cam(t_cam *cam);
+t_ivec2		*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_ivec3));
+
+
+//display_points.c
+
 int			display_points(t_imgd *img, t_cam cam, t_map map);
 
-t_ivec2		*get_corners(t_map map, t_cam cam, t_ivec2(*f)(t_cam, t_ivec3));
-t_ivec2		*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_ivec3));
-void		free_cam(t_cam *cam);
-t_cam		new_cam(t_point2 *pts, t_ivec2 dsp);
+//projection.c
+
+t_ivec2		project_iso(t_cam cam, t_ivec3 v3);
+
+
+//___________PARSING___________
+//_____________________________
+
+//map_parsing.c
 
 int			parse_map(int fd, t_map *map);
+
+//point_parsing.c
+
 t_point3	*get_points(char *r_map, int map_size, int raw_len);
+int			check_hexa_color(char *color);
+int			is_map_point(char *r_map, int i);
+
+//map_checker.c
+int			check_map(char *r_map);
+
+
+//___________MAP_CUSTOM__________
+//_______________________________
+
+t_map		*adapt_map(char **r_map, t_map *map);
+
+//___________DEBUG___________
+//___________________________
 
 void		debug_center(t_mlxinfo mlx);
 void		debug_map(t_map map, int show_pts);

@@ -6,11 +6,19 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:06:15 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/15 19:14:03 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/20 03:33:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+int	is_map_point(char *r_map, int i)
+{
+	if (!ft_is_space(r_map[i]) && (ft_is_sign(r_map[i]) 
+			|| ft_isdigit(r_map[i])) && (!i || ft_is_space(r_map[i - 1])))
+			return (1);
+	return (0);
+}
 
 int	check_hexa_color(char *color)
 {
@@ -21,12 +29,12 @@ int	check_hexa_color(char *color)
 		return (0);
 	while (ft_strchr("0123456789ABCDEF", color[i]))
 		i++;
-	if (i == 8)
-		return (1);
+	if (ft_is_space(color[i]) && i > 2)
+		return (i);
 	return (0);
 }
 
-int	check_info(char *info)
+int	get_info_format(char *info)
 {
 	int	i;
 
@@ -45,19 +53,19 @@ int	check_info(char *info)
 			return (2);
 	}
 	return (0);
-
 }
 
 t_point3	get_point_info(char *info, int id, int line_size)
 {
-	int		i;
+	int			i;
 	t_point3	point;
-	int		format;
+	int			format;
 
 	i = 0;
-	format = check_info(info);
+	format = get_info_format(info);
 	if (!format)
 	{
+		printf("BAD FORMAT\n");
 		point.v3.x = -1;
 		return (point);
 	}
@@ -89,11 +97,10 @@ t_point3	*get_points(char *r_map, int map_size, int raw_len)
 	{
 		if (ft_is_space(r_map[i]))
 			continue ;
-		else if ((ft_is_sign(r_map[i]) || ft_isdigit(r_map[i]))
-			&& (!i || ft_is_space(r_map[i - 1])))
+		else if (is_map_point(r_map, i))
 			{
 				points[j] = get_point_info(r_map + i, j, raw_len);
-				if (!points[j].v3.x == -1)
+				if (points[j].v3.x == -1)
 					return (free(points), NULL);
 				j++;
 			}

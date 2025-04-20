@@ -6,37 +6,32 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/19 00:28:15 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/20 03:55:35 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
-#define SCALE 10
-
 int	main(int argc, char *argv[])
 {
 	t_mlxinfo	mlx;
-	t_map	map;
-	t_cam	cam;
+	t_map		map;
+	t_cam		cam;
 
 	if (argc != 2 || !mlx_setup_img(&mlx))
 		return (1);
 	if (!parse_map(open(argv[1], O_RDONLY), &map))
-		return (ft_printf("error"), 1);
+		return (ft_printf("error\n"), 1);
 	cam = init_cam(map, mlx.w_dim, project_iso);
 	//
 	debug_map(map, 0);
 	debug_cam(cam, map, 0);
 	//
 	display_points(&mlx.img, cam, map);
-	// debug_center(mlx);
-	// debug_prj_center(mlx, map, cam, project_iso);
-	// debug_corners(mlx, cam, map);
 	put_img_to_window(&mlx, 0, 0);
 	mlx_loop(mlx.mlx);
-	return (free(map.pts) ,free_mlx(&mlx, ""));
+	return (free(map.pts), free_mlx(&mlx, ""));
 }
 
 // t_point2 p0 = {220, 220, 0xFFFFFF};

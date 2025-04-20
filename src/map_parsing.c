@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:51:52 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/14 19:47:34 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/20 03:33:02 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,12 @@ int	get_map_size(char *r_map, int *out_raw_len)
 	*out_raw_len = -1;
 	while (r_map[++i])
 	{
-		if (ft_is_space(r_map[i]))
-		{
-			if (r_map[i] == '\n')
-				*out_raw_len= check_valid_size(count, *out_raw_len);
-			if (!*out_raw_len)
-				return (ERROR);
-		}
-		else if ((ft_is_sign(r_map[i]) || ft_isdigit(r_map[i]))
-			&& (!i || ft_is_space(r_map[i - 1])))
-				count++;
+		if (r_map[i] == '\n')
+			*out_raw_len = check_valid_size(count, *out_raw_len);
+		if (!*out_raw_len )
+				return (count);
+		if (is_map_point(r_map, i))
+			count++;
 	}
 	return (count);
 }
@@ -87,14 +83,19 @@ int	parse_map(int fd, t_map *map)
 	r_map = get_map(fd);
 	if (!r_map)
 		return (0);
+	r_map = ft_strupcase(r_map, "x");
+	if (!check_map(r_map))
+		return (0);
+	// ft_printf("%s\n", r_map);
 	map->size =  get_map_size(r_map, &map->row_len);
-	printf("%s\n", r_map);
 	printf("map size : %i, line_size : %i\n", map->size, map->row_len);
-	if (!map->size || map->row_len == 0)
+	if (map->size < 4)
 		return (free(r_map), 0);
+	// if (map->row_len == 0)
+	// 	adapt_map(&r_map, &map);
 	map->pts = get_points(r_map, map->size, map->row_len);
+	printf("pts : %p\n", map->pts);
 	if (!map->pts)
 		return (free(r_map), 0);
-	free(r_map);
-	return (1);
+	return (free(r_map), 1);
 }

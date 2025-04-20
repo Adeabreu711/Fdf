@@ -6,7 +6,7 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/18 22:47:23 by alex             ###   ########.fr        #
+#    Updated: 2025/04/20 03:07:17 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MLX = minilibx-linux/libmlx_Linux.a
 SRC = \
 	fdf.c mlx_utils.c mlx_setup.c draw_line.c point_parsing.c \
 	map_parsing.c debug.c display_points.c map_utils.c \
-	projection.c camera.c camera_utils.c
+	projection.c camera.c camera_utils.c map_adapt.c map_checker.c
 
 SRC_BONUS = \
 
