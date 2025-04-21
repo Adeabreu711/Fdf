@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/21 21:54:05 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/22 01:22:40 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	debug_map(t_map map, int show_pts)
 	ft_printf("W_WIDTH : %i\nM_HEIGHT : %i\n\n", W_WIDTH, W_HEIGHT);
 	while (++i < map.size && show_pts)
 	{
-		ft_printf("point[%i] : (%i,%i,%i), color : %i\n", i, map.pts[i].v3.x,
+		ft_printf("point[%i] : (%i,%i,%i), color : %x\n", i, map.pts[i].v3.x,
 			map.pts[i].v3.y, map.pts[i].v3.z, map.pts[i].color);
 	}
 }
@@ -36,7 +36,7 @@ void	debug_cam(t_cam cam, t_map map, int show_pts)
 	printf("offset : (%i,%i)\nscale : %f\n", cam.offset.x, cam.offset.y, cam.scale);
 	while (++i < map.size && show_pts)
 	{
-		ft_printf("point[%i] : (%i,%i), color : %i\n", i, cam.pts[i].v2.x,
+		ft_printf("point[%i] : (%i,%i), color : %x\n", i, cam.pts[i].v2.x,
 			cam.pts[i].v2.y, cam.pts[i].color);
 	}
 	printf("0(%i,%i), 1(%i, %i), 2(%i, %i), 3(%i,%i)\n\n", cam.pts[0].v2.x, 

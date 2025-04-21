@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/04/21 22:16:47 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/22 01:23:41 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_point2	*get_projection(t_map mp, t_cam cm, t_ivec2(*f)(t_cam, t_ivec3))
 	while (++i < mp.size)
 	{
 		pts[i].v2 = f(cm, mp.pts[i].v3);
-		pts[i].color = mp.pts->color;
+		pts[i].color = mp.pts[i].color;
 	}
 	return (pts);
 }

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:18:53 by alex              #+#    #+#             */
-/*   Updated: 2025/04/21 22:35:04 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/22 01:07:19 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_point3
 	int		color;
 }	t_point3;
 
+typedef struct	s_color {
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}	t_color;
+
 typedef struct	s_imgd {
 	void	*img;
 	char	*addr;
@@ -50,6 +56,10 @@ typedef struct	s_mlxinfo
 
 void		put_pixel(t_imgd *data, int x, int y, int color);
 void		draw_line(t_imgd *img, t_point2 p1, t_point2 p2);
+
+int			lerp_color(int color1, int color2, float grad);
+int			rgb_to_int(t_color c);
+t_color		int_to_rgb(int color);
 
 int			free_mlx(t_mlxinfo *mlx, char *err_msg);
 int			mlx_setup_img(t_mlxinfo *mlx);

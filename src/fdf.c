@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/21 23:43:10 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/22 01:29:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 	display_points(&fdf.mlx.img, fdf.cam, fdf.map);
 	put_img_to_window(&fdf.mlx, 0, 0);
 	mlx_hook(fdf.mlx.window, 17, 0, close_window, &fdf);
-	mlx_key_hook(fdf.mlx.window, key_hook, &fdf);    
+	mlx_key_hook(fdf.mlx.window, key_hook, &fdf);
 	mlx_loop(fdf.mlx.mlx);
 	return (close_window(&fdf));
 }
