@@ -6,13 +6,14 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:51:52 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/20 03:33:02 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/21 21:49:04 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #define ERROR 0
 
+//return the readed map in a string.
 char	*get_map(int fd)
 {
 	t_sbuild	*sb;
@@ -38,9 +39,10 @@ char	*get_map(int fd)
 	return (r_map);
 }
 
+//check if the number of points in a row is the same in all columns.
 static int	check_valid_size(int count, int line_size)
 {
-	static int line_count = 1;
+	static int	line_count = 1;
 
 	if (line_size == -1)
 	{
@@ -53,6 +55,8 @@ static int	check_valid_size(int count, int line_size)
 	return (line_size);
 }
 
+//return 1 if the readed map dont contain errors, 0 if not.
+//assign to the given map the row len.
 int	get_map_size(char *r_map, int *out_raw_len)
 {
 	int	i;
@@ -65,36 +69,33 @@ int	get_map_size(char *r_map, int *out_raw_len)
 	{
 		if (r_map[i] == '\n')
 			*out_raw_len = check_valid_size(count, *out_raw_len);
-		if (!*out_raw_len )
-				return (count);
+		if (!*out_raw_len)
+			return (count);
 		if (is_map_point(r_map, i))
 			count++;
 	}
 	return (count);
 }
 
+// return 1 if the map parsing succeed, 0 if not.
+// get all map info from the given fd.
 int	parse_map(int fd, t_map *map)
 {
 	char	*r_map;
-	int		map_size;
-	int		line_size;
 
-	line_size = 0;
 	r_map = get_map(fd);
 	if (!r_map)
 		return (0);
 	r_map = ft_strupcase(r_map, "x");
-	if (!check_map(r_map))
+	if (!is_map_valid(r_map))
 		return (0);
-	// ft_printf("%s\n", r_map);
-	map->size =  get_map_size(r_map, &map->row_len);
-	printf("map size : %i, line_size : %i\n", map->size, map->row_len);
-	if (map->size < 4)
-		return (free(r_map), 0);
-	// if (map->row_len == 0)
-	// 	adapt_map(&r_map, &map);
+	map->size = get_map_size(r_map, &map->row_len);
+	if (map->row_len == 0)
+	{
+		if (!adapt_map(&r_map, map))
+			return (free(r_map), 0);
+	}
 	map->pts = get_points(r_map, map->size, map->row_len);
-	printf("pts : %p\n", map->pts);
 	if (!map->pts)
 		return (free(r_map), 0);
 	return (free(r_map), 1);

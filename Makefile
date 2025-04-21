@@ -6,20 +6,20 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/20 03:07:17 by alex             ###   ########.fr        #
+#    Updated: 2025/04/21 21:48:22 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-CFLAGS = -g3 #-Wall -Wextra -Werror -g3
+CFLAGS = -g3 -Wall -Wextra -Werror
 MLXFLAGS = -lXext -lX11 -lm -Lminilibx-linux -lmlx_Linux
 LIB = libft/libft.a
 MLX = minilibx-linux/libmlx_Linux.a
 
 SRC = \
 	fdf.c mlx_utils.c mlx_setup.c draw_line.c point_parsing.c \
-	map_parsing.c debug.c display_points.c map_utils.c \
+	map_parsing.c debug.c display_points.c \
 	projection.c camera.c camera_utils.c map_adapt.c map_checker.c
 
 SRC_BONUS = \

@@ -6,11 +6,51 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 03:04:37 by alex              #+#    #+#             */
-/*   Updated: 2025/04/20 04:01:43 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/21 22:27:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+int	check_size(char *r_map);
+int	check_info(char *info);
+int	check_map(char *r_map);
+
+//return 1 if the map is valid, 0 if not.
+int	is_map_valid(char *r_map)
+{
+	if (!check_size(r_map) || !check_map(r_map))
+		return (0);
+	return (1);
+}
+
+//return 1 if the size of the map can be rendered properly, 0 if not.
+int	check_size(char *r_map)
+{
+	int	i;
+	int	col;
+	int	row_len;
+	int	row_max;
+
+	i = -1;
+	col = 0;
+	row_len = 0;
+	row_max = 0;
+	while (r_map[++i])
+	{
+		if (r_map[i] == '\n')
+		{
+			if (row_len > row_max)
+				row_max = row_len;
+			if (row_max > 1 && ++col > 1)
+				return (1);
+			row_len = 0;
+		}
+		else if (is_map_point(r_map, i))
+			row_len++;
+	}
+	return (0);
+}
 
 //return the lenght of given point info or 0 if the point isn't valid.
 int	check_info(char *info)
@@ -36,7 +76,7 @@ int	check_info(char *info)
 	return (0);
 }
 
-//return 1 if the given map format is valid, 0 if not.
+//return 1 if the given map contain errors, 0 if not.
 int	check_map(char *r_map)
 {
 	int	i;
@@ -51,8 +91,6 @@ int	check_map(char *r_map)
 			row_len = 0;
 		else if (r_map[i] == '\n')
 			return (ft_printf("error : empty line in file\n"), 0);
-		else if (ft_is_space(r_map[i]) && r_map[i] != '\n')
-			continue;
 		else if (is_map_point(r_map, i))
 		{
 			info_len = check_info(r_map + i);
@@ -61,7 +99,7 @@ int	check_map(char *r_map)
 			i += info_len - 1;
 			row_len++;
 		}
-		else
+		else if (!ft_is_space(r_map[i]))
 			return (ft_printf("error : invalid character in file\n"), 0);
 	}
 	return (1);

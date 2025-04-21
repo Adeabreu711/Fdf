@@ -6,32 +6,49 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/20 03:55:35 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/21 23:43:10 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
+int	close_window(t_fdf *fdf)
+{
+	mlx_loop_end(fdf->mlx.mlx);
+	free(fdf->map.pts);
+	free_cam(&fdf->cam);
+	free_mlx(&fdf->mlx, "");
+	exit (0);
+	return (0);
+}
+
+int	key_hook(int keycode, t_fdf *fdf)
+{
+	if (keycode == 65307)
+		close_window(fdf);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_mlxinfo	mlx;
-	t_map		map;
-	t_cam		cam;
+	t_fdf		fdf;
 
-	if (argc != 2 || !mlx_setup_img(&mlx))
+	if (argc != 2 || !mlx_setup_img(&fdf.mlx))
 		return (1);
-	if (!parse_map(open(argv[1], O_RDONLY), &map))
+	if (!parse_map(open(argv[1], O_RDONLY), &fdf.map))
 		return (ft_printf("error\n"), 1);
-	cam = init_cam(map, mlx.w_dim, project_iso);
+	fdf.cam = init_cam(fdf.map, fdf.mlx.w_dim, project_iso);
 	//
-	debug_map(map, 0);
-	debug_cam(cam, map, 0);
+	debug_map(fdf.map, 0);
+	debug_cam(fdf.cam, fdf.map, 0);
 	//
-	display_points(&mlx.img, cam, map);
-	put_img_to_window(&mlx, 0, 0);
-	mlx_loop(mlx.mlx);
-	return (free(map.pts), free_mlx(&mlx, ""));
+	display_points(&fdf.mlx.img, fdf.cam, fdf.map);
+	put_img_to_window(&fdf.mlx, 0, 0);
+	mlx_hook(fdf.mlx.window, 17, 0, close_window, &fdf);
+	mlx_key_hook(fdf.mlx.window, key_hook, &fdf);    
+	mlx_loop(fdf.mlx.mlx);
+	return (close_window(&fdf));
 }
 
 // t_point2 p0 = {220, 220, 0xFFFFFF};

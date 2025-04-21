@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:33:24 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/19 21:10:32 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/21 22:20:57 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #define MLX_ERROR "%serror :\e[0m mlx pointer is null\n"
 #define WINDOW_ERROR "%serror :\e[0m window pointer is null\n"
 
+//free the memory of the mlxinfo struct.
 int	free_mlx(t_mlxinfo *mlx, char *err_msg)
 {
 	ft_fprintf(2, err_msg, RED);
@@ -30,19 +31,25 @@ int	free_mlx(t_mlxinfo *mlx, char *err_msg)
 	return (0);
 }
 
+//put the image to the window of the mlxinfo struct.
 void	put_img_to_window(t_mlxinfo *mlx, int x, int y)
 {
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img.img, x, y);
 }
 
+//initialize the image data.
 void	img_init(t_imgd *img)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 }
 
+//setup the data of the mlxinfo struct.
 int	mlx_setup_img(t_mlxinfo *mlx)
 {
+	mlx->mlx = NULL;
+	mlx->window = NULL;
+	mlx->img.addr = NULL;
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		return (ft_fprintf(2, MLX_ERROR, RED), 0);
