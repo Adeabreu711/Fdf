@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/04/22 01:23:41 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/23 15:45:45 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static float	get_scale(t_cam cam, t_ivec2 *min_max)
 	return ((float)scale.y * 0.6f);
 }
 
-//return a ivec2 with the offset needed to place the map in the center. 
+//return a ivec2 with the offset needed to place the map in the center.
 t_ivec2	get_center_offset(t_cam cam, t_ivec2 *min_max)
 {
 	t_ivec2	prj_ctr;
