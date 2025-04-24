@@ -1,4 +1,5 @@
-/* ************************************************************************** */
+ls
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_nivec.c                                         :+:      :+:    :+:   */
@@ -14,19 +15,10 @@
 
 t_ivec3 ft_nivec3(int x, int y, int z)
 {
-	t_ivec3	new_v3;
-
-	new_v3.x = x;
-	new_v3.y = y;
-	new_v3.z = z;
-	return (new_v3);
+	return ((t_ivec3) {x, y, z});
 }
 
 t_ivec2 ft_nivec2(int x, int y)
 {
-	t_ivec2	new_v2;
-
-	new_v2.x = x;
-	new_v2.y = y;
-	return (new_v2);
+	return ((t_ivec2) {x, y});
 }
