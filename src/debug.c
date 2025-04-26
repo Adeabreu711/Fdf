@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/22 01:22:40 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/25 15:47:58 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,13 @@ void	debug_cam(t_cam cam, t_map map, int show_pts)
 		ft_printf("point[%i] : (%i,%i), color : %x\n", i, cam.pts[i].v2.x,
 			cam.pts[i].v2.y, cam.pts[i].color);
 	}
-	printf("0(%i,%i), 1(%i, %i), 2(%i, %i), 3(%i,%i)\n\n", cam.pts[0].v2.x, 
+	i = -1;
+	while (++i < map.size && show_pts)
+	{
+		printf("rota[%i] : (%f,%f,%f)\n", i, cam.v_rota[i].x,
+			cam.v_rota[i].y, cam.v_rota[i].z);
+	}
+	printf("0(%i,%i), 1(%i, %i), 2(%i, %i), 3(%i,%i)\n\n", cam.pts[0].v2.x,
 			cam.pts[0].v2.y, cam.pts[map.row_len - 1].v2.x, cam.pts[map.row_len -1].v2.y,
 			cam.pts[map.size - map.row_len].v2.x, cam.pts[map.size - map.row_len].v2.y,
 			cam.pts[map.size - 1].v2.x, cam.pts[map.size - 1].v2.y);

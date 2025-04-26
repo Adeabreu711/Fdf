@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:42 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/22 01:20:30 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/25 21:22:28 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	draw_descending(t_imgd *img, t_point2 p1, t_point2 p2);
-static void	draw_ascending(t_imgd *img, t_point2 p1, t_point2 p2);
+static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp);
+static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp);
 
 //draw a line between the two given points.
-void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2)
+void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
 {
 	if (ft_abs(p2.v2.y - p1.v2.y) > ft_abs(p2.v2.x - p1.v2.x))
-		return (draw_ascending(img, p1, p2));
-	draw_descending(img, p1, p2);
+		return (draw_asc(img, p1, p2, dsp));
+	draw_des(img, p1, p2, dsp);
 }
 
 //draw line taking the y axis as increment.
-static void	draw_ascending(t_imgd *img, t_point2 p1, t_point2 p2)
+static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
 {
 	int		cursor;
 	int		color;
@@ -38,13 +38,13 @@ static void	draw_ascending(t_imgd *img, t_point2 p1, t_point2 p2)
 	{
 		color = lerp_color(p1.color, p2.color, (float)(cursor - p1.v2.y)
 				/ (float)(p2.v2.y - p1.v2.y));
-		put_pixel(img, a * cursor + b, cursor, color);
+		put_pixel(img, ft_nivec2(a * cursor + b, cursor), color, dsp);
 		cursor += ft_sign(p2.v2.y - p1.v2.y);
 	}
 }
 
 //draw line taking the x axis as increment.
-static void	draw_descending(t_imgd *img, t_point2 p1, t_point2 p2)
+static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
 {
 	float	cursor;
 	int		color;
@@ -59,7 +59,7 @@ static void	draw_descending(t_imgd *img, t_point2 p1, t_point2 p2)
 	{
 		color = lerp_color(p1.color, p2.color, (float)(cursor - p1.v2.x)
 				/ (float)(p2.v2.x - p1.v2.x));
-		put_pixel(img, cursor, a * cursor + b, color);
+		put_pixel(img, ft_nivec2(cursor, a * cursor + b), color, dsp);
 		cursor += ft_sign(p2.v2.x - p1.v2.x);
 	}
 }

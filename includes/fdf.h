@@ -3,44 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/21 22:45:40 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/26 01:44:59 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include <fcntl.h>
+# include <fcntl.h>
+# include "my_mlx.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/ft_string_builder.h"
+# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/color.h"
+# include "../libft/includes/vector.h"
 
-#include "my_mlx.h"
-#include "../libft/includes/libft.h"
-#include "../libft/includes/ft_string_builder.h"
-#include "../libft/includes/ft_printf.h"
-#include "../libft/includes/color.h"
-#include "../libft/includes/vector.h"
-
-typedef struct	s_cam
+typedef struct s_stgs
 {
+	t_ivec2		dsp;
+	t_fvec2		lmt_scale;
+	t_fvec2		lmt_offset;
+}	t_stgs;
+
+typedef struct s_cam
+{
+	int			prj_id;
 	float		scale;
 	t_ivec2		offset;
-	t_ivec2		dsp;
+	t_fvec3		rotation;
+	t_fvec3		*v_rota;
 	t_point2	*pts;
+	t_stgs		stgs;
 }	t_cam;
 
-typedef struct	s_map
+typedef struct s_map
 {
-	int		size;
-	int		row_len;
+	int			size;
+	int			row_len;
 	t_point3	*pts;
 }	t_map;
 
-typedef struct	s_fdf
+typedef struct s_rdr
+{
+	t_ivec2		(*prj[3])(t_cam, t_fvec3);
+}	t_rdr;
+
+typedef struct s_fdf
 {
 	t_cam		cam;
 	t_map		map;
+	t_rdr		rdr;
 	t_mlxinfo	mlx;
 }	t_fdf;
 
@@ -48,18 +63,24 @@ typedef struct	s_fdf
 
 //camera.c
 
-t_cam		init_cam(t_map map, t_ivec2 dsp, t_ivec2(*f)(t_cam, t_ivec3));
+t_cam		init_cam(t_map map, t_ivec2 dsp, t_rdr rdr);
 t_ivec2		get_center_offset(t_cam cam, t_ivec2 *min_max);
 
 //camera_utils.c
 
 t_cam		new_cam(t_point2 *pts, t_ivec2 dsp);
 void		free_cam(t_cam *cam);
-t_ivec2		*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_ivec3));
+t_ivec2		*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_fvec3));
 
 //projection.c
 
-t_ivec2		project_iso(t_cam cam, t_ivec3 v3);
+void		init_projections(t_rdr *rdr);
+t_ivec2		project_iso(t_cam cam, t_fvec3 v3);
+t_ivec2		project_cavalier(t_cam cam, t_fvec3 v3);
+
+//rotation.c
+
+t_fvec3		rotate(t_fvec3 v3, float rota, char axis);
 
 //display_points.c
 

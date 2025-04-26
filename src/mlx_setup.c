@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:33:24 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/21 22:20:57 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/26 02:11:10 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 //free the memory of the mlxinfo struct.
 int	free_mlx(t_mlxinfo *mlx, char *err_msg)
 {
-	ft_fprintf(2, err_msg, RED);
 	if (mlx->img.img)
 		mlx_destroy_image(mlx->mlx, mlx->img.img);
 	if (mlx->window)

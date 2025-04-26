@@ -6,14 +6,30 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/04/23 15:45:45 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/26 02:10:09 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+//return a list of point rotated to the given direction.
+static t_fvec3	*get_rotation(t_map map, char axis, float angle)
+{
+	t_fvec3	*pts;
+	int		i;
+
+	i = -1;
+	pts = ft_calloc(map.size + 1, sizeof(t_fvec3));
+	if (!pts)
+		return (NULL);
+	while (++i < map.size)
+		pts[i] = rotate(ft_nfvec3(map.pts[i].v3.x,
+					map.pts[i].v3.y, map.pts[i].v3.z), angle, axis);
+	return (pts);
+}
+
 //return a list of point projected to the given direction.
-static t_point2	*get_projection(t_map mp, t_cam cm, t_ivec2(*f)(t_cam, t_ivec3))
+static t_point2	*get_projection(t_map mp, t_cam cm, t_ivec2(*f)(t_cam, t_fvec3))
 {
 	t_point2	*pts;
 	int			i;
@@ -24,7 +40,7 @@ static t_point2	*get_projection(t_map mp, t_cam cm, t_ivec2(*f)(t_cam, t_ivec3))
 		return (NULL);
 	while (++i < mp.size)
 	{
-		pts[i].v2 = f(cm, mp.pts[i].v3);
+		pts[i].v2 = f(cm, cm.v_rota[i]);
 		pts[i].color = mp.pts[i].color;
 	}
 	return (pts);
@@ -35,8 +51,10 @@ static float	get_scale(t_cam cam, t_ivec2 *min_max)
 {
 	t_fvec2	scale;
 
-	scale.x = (float)(cam.dsp.x / (float)(min_max[1].x + 1 - min_max[0].x));
-	scale.y = (float)(cam.dsp.y / (float)(min_max[3].y + 1 - min_max[2].y));
+	scale.x = (float)(cam.stgs.dsp.x
+			/ (float)(min_max[1].x + 1 - min_max[0].x));
+	scale.y = (float)(cam.stgs.dsp.y
+			/ (float)(min_max[3].y + 1 - min_max[2].y));
 	if (scale.x < scale.y)
 		return ((float)scale.x * 0.6f);
 	return ((float)scale.y * 0.6f);
@@ -50,22 +68,23 @@ t_ivec2	get_center_offset(t_cam cam, t_ivec2 *min_max)
 
 	prj_ctr.x = ((min_max[0].x + min_max[1].x) * cam.scale / 2);
 	prj_ctr.y = ((min_max[2].y + min_max[3].y) * cam.scale / 2);
-	offset.x = cam.dsp.x / 2 - prj_ctr.x;
-	offset.y = cam.dsp.y / 2 - prj_ctr.y;
+	offset.x = cam.stgs.dsp.x / 2 - prj_ctr.x;
+	offset.y = cam.stgs.dsp.y / 2 - prj_ctr.y;
 	return (offset);
 }
 
 //return a camera with the settings adapted to the given projection.
-t_cam	init_cam(t_map map, t_ivec2 dsp, t_ivec2(*f)(t_cam, t_ivec3))
+t_cam	init_cam(t_map map, t_ivec2 dsp, t_rdr rdr)
 {
 	t_cam	cam;
 	t_ivec2	*min_max;
 
 	cam = new_cam(NULL, dsp);
-	min_max = get_min_max(map, f);
+	min_max = get_min_max(map, rdr.prj[0]);
 	cam.scale = get_scale(cam, min_max);
 	cam.offset = get_center_offset(cam, min_max);
-	cam.pts = get_projection(map, cam, f);
+	cam.v_rota = get_rotation(map, 0, 0);
+	cam.pts = get_projection(map, cam, rdr.prj[0]);
 	free(min_max);
 	return (cam);
 }

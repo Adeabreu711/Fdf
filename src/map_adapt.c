@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_adapt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 23:03:24 by alex              #+#    #+#             */
-/*   Updated: 2025/04/21 21:53:42 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/25 15:58:53 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_col_len(char *r_map)
 }
 
 //out the max points in a row in the first half and
-//return the number of missing points in the second. 
+//return the number of missing points in the second.
 int	get_ms_points(char *r_map, int *row_max, int is_row_max)
 {
 	int		ms_pts;

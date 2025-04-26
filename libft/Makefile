@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
+#    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 15:16:24 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/16 17:38:03 by alex             ###   ########.fr        #
+#    Updated: 2025/04/24 15:33:40 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC = \
 	$(PF_D)/ft_pfbuildunsnb.c $(PF_D)/ft_pfnullcheck.c $(PF_D)/ft_printf.c \
 	$(PF_D)/ft_ui64convert_base.c $(PF_D)/ft_ui64atoi_base.c $(PF_D)/ft_ui64itoa.c \
 	\
-	$(V_D)/ft_iop.c $(V_D)/ft_ivec_op.c $(V_D)/ft_nivec.c
+	$(V_D)/ft_iop.c $(V_D)/ft_ivec_op.c $(V_D)/ft_nivec.c $(V_D)/ft_nfvec.c
 
 BONUS = \
 	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \

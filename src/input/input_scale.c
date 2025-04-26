@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_points.c                                   :+:      :+:    :+:   */
+/*   input_scale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 16:18:46 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/25 21:58:13 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/25 20:33:00 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/26 01:44:25 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/input.h"
 
-// int	get_box_size()
-// {
-
-// }
-
-//display the camera points at the screen.
-int	display_points(t_imgd *img, t_cam cam, t_map map)
+int	zoom_in(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr)
 {
-	int	i;
+	cam->scale += 0.2f;
+	refresh_projection(mlx, map, cam, rdr);
+	return (1);
+}
 
-	if (!cam.pts || !img)
-		return (0);
-	i = -1;
-	while (++i < map.size)
-	{
-		if (i + map.row_len < map.size)
-			draw_line(img, cam.pts[i], cam.pts[i + map.row_len], cam.stgs.dsp);
-		if ((i + 1) % map.row_len != 0 && i + 1 < map.size)
-			draw_line(img, cam.pts[i], cam.pts[i + 1], cam.stgs.dsp);
-	}
+int	zoom_out(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr)
+{
+	cam->scale -= 0.2f;
+	refresh_projection(mlx, map, cam, rdr);
 	return (1);
 }
