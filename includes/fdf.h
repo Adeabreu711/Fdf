@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/26 01:44:59 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:42:44 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stgs
 typedef struct s_cam
 {
 	int			prj_id;
+	float		height;
 	float		scale;
 	t_ivec2		offset;
 	t_fvec3		rotation;

@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   input_height.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 16:46:06 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/27 15:53:15 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/27 15:32:00 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/27 16:11:24 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../includes/input.h"
-#include "X11/keysym.h"
 
-int	mouse_hook(int button, int x, int y, t_fdf *fdf)
+int	reduce_height(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr)
 {
-	(void)x;
-	(void)y;
-	if (button == 4)
-		zoom_in(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
-	else if (button == 5)
-		zoom_out(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
+	cam->height += 0.1f;
+	refresh_projection(mlx, map, cam, rdr);
 	return (0);
 }
 
-int	key_hook(int keycode, t_fdf *fdf)
+int	add_height(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr)
 {
-	key_height(keycode, fdf);
-	key_offset(keycode, fdf);
-	if (fdf->cam.prj_id != 2)
-		key_rotation(keycode, fdf);
-	key_render(keycode, fdf);
-	if (keycode == XK_Escape)
-		close_window(fdf);
+	cam->height -= 0.1f;
+	refresh_projection(mlx, map, cam, rdr);
+	return (0);
+}
+
+int	key_height(int keycode, t_fdf *fdf)
+{
+	if (keycode == XK_KP_Add)
+		add_height(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
+	else if (keycode == XK_KP_Subtract)
+		reduce_height(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
 	return (0);
 }

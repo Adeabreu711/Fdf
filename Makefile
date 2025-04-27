@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/26 02:05:46 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/27 15:46:19 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = \
 	projection.c camera.c camera_utils.c map_adapt.c map_checker.c \
 	rotation.c \
 	$(IPT_DIR)/input.c $(IPT_DIR)/input_utils.c $(IPT_DIR)/input_rotation1.c $(IPT_DIR)/input_rotation2.c \
-	$(IPT_DIR)/input_offset.c $(IPT_DIR)/input_scale.c $(IPT_DIR)/input_render.c
+	$(IPT_DIR)/input_offset.c $(IPT_DIR)/input_scale.c $(IPT_DIR)/input_render.c $(IPT_DIR)/input_height.c
 
 SRC_BONUS = \
 

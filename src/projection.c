@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:48:14 by alex              #+#    #+#             */
-/*   Updated: 2025/04/26 02:12:45 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/27 15:49:03 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_ivec2	project_iso(t_cam cam, t_fvec3 v3)
 	angle = 0.523599;
 	v2.x = (int)((v3.x - v3.y) * cosf(angle) * cam.scale + cam.offset.x);
 	v2.y = (int)((v3.x + v3.y) * sinf(angle) * cam.scale - v3.z
-			* cam.scale / 2.0f + cam.offset.y);
+			* cam.scale / cam.height + cam.offset.y);
 	return (v2);
 }
 
@@ -43,10 +43,10 @@ t_ivec2	project_vibrant(t_cam cam, t_fvec3 v3)
 	float	sine_factor;
 
 	dist = sqrtf(v3.x * v3.x + v3.y * v3.y + v3.z * v3.z);
-	sine_factor = sinf(dist * 10.0f) * 0.12f;
+	sine_factor = sinf(dist * 0.5f) * 1.0f;
 	v2.x = (int)((v3.x + sine_factor) * cam.scale + cam.offset.x);
 	v2.y = (int)((v3.y + sine_factor) * cam.scale - v3.z * cam.scale
-			/ 2.0f + cam.offset.y);
+			/ cam.height + cam.offset.y);
 	return (v2);
 }
 

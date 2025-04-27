@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:47:00 by alex              #+#    #+#             */
-/*   Updated: 2025/04/26 00:15:43 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/27 15:51:10 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_cam	new_cam(t_point2 *pts, t_ivec2 dsp)
 	cam.offset = ft_nivec2(0, 0);
 	cam.rotation = ft_nfvec3(0.0f, 0.0f, 0.0f);
 	cam.prj_id = 0;
+	cam.height = 2.0f;
 	cam.scale = 1;
 	cam.stgs.dsp = dsp;
 	return (cam);
