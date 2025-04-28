@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:05:31 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/27 16:06:32 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:34:36 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ int	key_offset(int keycode, t_fdf *fdf)
 		translate_up(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
 	else if (keycode == XK_s)
 		translate_down(&fdf->mlx, fdf->map, &fdf->cam, fdf->rdr);
-	return (0);
+	return (1);
 }

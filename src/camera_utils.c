@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:47:00 by alex              #+#    #+#             */
-/*   Updated: 2025/04/27 15:51:10 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:01:02 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_cam	new_cam(t_point2 *pts, t_ivec2 dsp)
 	cam.v_rota = NULL;
 	cam.offset = ft_nivec2(0, 0);
 	cam.rotation = ft_nfvec3(0.0f, 0.0f, 0.0f);
+	cam.show_tri = 0;
+	cam.color_id = 0;
 	cam.prj_id = 0;
 	cam.height = 2.0f;
 	cam.scale = 1;
@@ -43,7 +45,7 @@ void	free_cam(t_cam *cam)
 //return the the minimum and maximum values of the map.
 //[0]min_x, [1]max_x
 //[2]min_y, [3]max_y
-t_ivec2	*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_fvec3))
+t_ivec2	*get_min_max_xy(t_map map, t_ivec2(*f)(t_cam, t_fvec3))
 {
 	int		i;
 	t_ivec2	*min_max;
@@ -68,6 +70,23 @@ t_ivec2	*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_fvec3))
 			min_max[2] = pt;
 		if (pt.y > min_max[3].y)
 			min_max[3] = pt;
+	}
+	return (min_max);
+}
+
+t_ivec2 get_min_max_z(t_map map)
+{
+	t_ivec2	min_max;
+	int		i;
+
+	i = -1;
+	min_max = ft_nivec2(0, 0);
+	while(++i < map.size)
+	{
+		if (min_max.x > map.pts[i].v3.z)
+			min_max.x = map.pts[i].v3.z;
+		if (min_max.y < map.pts[i].v3.z)
+			min_max.y = map.pts[i].v3.z;
 	}
 	return (min_max);
 }

@@ -6,16 +6,17 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:18:46 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/25 21:58:13 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:23:16 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-// int	get_box_size()
-// {
-
-// }
+void	draw_diagonal(int i, t_imgd *img, t_cam *cam, t_map *map)
+{
+	if ((i + 1) % map->row_len != 0 && i + map->row_len < map->size)
+		draw_line(img, cam->pts[i], cam->pts[i + map->row_len + 1], cam->stgs.dsp);
+}
 
 //display the camera points at the screen.
 int	display_points(t_imgd *img, t_cam cam, t_map map)
@@ -31,6 +32,8 @@ int	display_points(t_imgd *img, t_cam cam, t_map map)
 			draw_line(img, cam.pts[i], cam.pts[i + map.row_len], cam.stgs.dsp);
 		if ((i + 1) % map.row_len != 0 && i + 1 < map.size)
 			draw_line(img, cam.pts[i], cam.pts[i + 1], cam.stgs.dsp);
+		if (cam.show_tri)
+			draw_diagonal(i, img, &cam, &map);
 	}
 	return (1);
 }

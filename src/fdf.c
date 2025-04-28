@@ -6,11 +6,12 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/27 16:11:19 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:38:00 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../minilibx-linux/mlx.h"
 #include "../includes/input.h"
 #include <math.h>
 
@@ -41,11 +42,9 @@ int	main(int argc, char *argv[])
 		return (ft_printf("error\n"), 1);
 	center_map_pivot(&fdf.map);
 	init_projections(&fdf.rdr);
+	init_gradients(&fdf.rdr);
 	fdf.cam = init_cam(fdf.map, fdf.mlx.w_dim, fdf.rdr);
-	//
-	debug_map(fdf.map, 0);
-	debug_cam(fdf.cam, fdf.map, 0);
-	//
+	draw_ui_rect(&fdf.mlx.img, ft_nivec2(540, 360), get_window_sf(), fdf.cam.stgs.dsp);
 	display_points(&fdf.mlx.img, fdf.cam, fdf.map);
 	put_img_to_window(&fdf.mlx, 0, 0);
 	mlx_hook(fdf.mlx.window, 17, 0, close_window, &fdf);
@@ -54,3 +53,9 @@ int	main(int argc, char *argv[])
 	mlx_loop(fdf.mlx.mlx);
 	return (close_window(&fdf));
 }
+
+	//
+	//draw_ui_rect(&fdf.mlx.img, ft_nivec2(540, 360), get_window_sf(), fdf.cam.stgs.dsp);
+	//debug_map(fdf.map, 0);
+	//debug_cam(fdf.cam, fdf.map, 0);
+	//

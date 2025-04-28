@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:33:24 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/26 02:11:10 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:22:46 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define WINDOW_ERROR "%serror :\e[0m window pointer is null\n"
 
 //free the memory of the mlxinfo struct.
-int	free_mlx(t_mlxinfo *mlx, char *err_msg)
+int	free_mlx(t_mlxinfo *mlx)
 {
 	if (mlx->img.img)
 		mlx_destroy_image(mlx->mlx, mlx->img.img);
@@ -56,12 +56,12 @@ int	mlx_setup_img(t_mlxinfo *mlx)
 	mlx->w_dim.y = W_HEIGHT;
 	mlx->window = mlx_new_window(mlx->mlx, mlx->w_dim.x, mlx->w_dim.y, "fdf");
 	if (!mlx->window)
-		return (free_mlx(mlx, WINDOW_ERROR), 0);
+		return (free_mlx(mlx), 0);
 	mlx->img.img = mlx_new_image(mlx->mlx, mlx->w_dim.x, mlx->w_dim.y);
 	if (!mlx->img.img)
-		return (free_mlx(mlx, WINDOW_ERROR), 0);
+		return (free_mlx(mlx), 0);
 	img_init(&mlx->img);
 	if (!mlx->img.addr)
-		return (free_mlx(mlx, WINDOW_ERROR), 0);
+		return (free_mlx(mlx), 0);
 	return (1);
 }

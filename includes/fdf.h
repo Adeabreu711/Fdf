@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/27 18:42:44 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:07:11 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include "../libft/includes/color.h"
 # include "../libft/includes/vector.h"
 
+# define PRJ_S 3
+# define COLOR_S 3
+
 typedef struct s_stgs
 {
 	t_ivec2		dsp;
@@ -31,6 +34,8 @@ typedef struct s_stgs
 typedef struct s_cam
 {
 	int			prj_id;
+	int			color_id;
+	int			show_tri;
 	float		height;
 	float		scale;
 	t_ivec2		offset;
@@ -49,7 +54,8 @@ typedef struct s_map
 
 typedef struct s_rdr
 {
-	t_ivec2		(*prj[3])(t_cam, t_fvec3);
+	t_ivec2		(*prj[PRJ_S])(t_cam, t_fvec3);
+	t_ivec3		c_grad[COLOR_S];
 }	t_rdr;
 
 typedef struct s_fdf
@@ -71,7 +77,8 @@ t_ivec2		get_center_offset(t_cam cam, t_ivec2 *min_max);
 
 t_cam		new_cam(t_point2 *pts, t_ivec2 dsp);
 void		free_cam(t_cam *cam);
-t_ivec2		*get_min_max(t_map map, t_ivec2(*f)(t_cam, t_fvec3));
+t_ivec2		*get_min_max_xy(t_map map, t_ivec2(*f)(t_cam, t_fvec3));
+t_ivec2		get_min_max_z(t_map map);
 
 //projection.c
 
@@ -108,6 +115,16 @@ int			is_map_valid(char *r_map);
 //_______________________________
 
 int			adapt_map(char **r_map, t_map *map);
+
+//color_map.c
+
+void		color_map(t_map map, t_cam *cam, t_ivec3 colors);
+void		init_gradients(t_rdr *rdr);
+void		get_dflt_color(t_map map, t_cam *cam);
+
+//UI
+void		draw_ui_rect(t_imgd *img, t_ivec2 dim, float w_sf, t_ivec2 dsp);
+float		get_window_sf(void);
 
 //___________DEBUG___________
 //___________________________

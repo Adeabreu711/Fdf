@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/04/27 15:47:25 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:05:24 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_cam	init_cam(t_map map, t_ivec2 dsp, t_rdr rdr)
 	t_ivec2	*min_max;
 
 	cam = new_cam(NULL, dsp);
-	min_max = get_min_max(map, rdr.prj[0]);
+	min_max = get_min_max_xy(map, rdr.prj[0]);
 	cam.scale = get_scale(cam, min_max);
 	cam.offset = get_center_offset(cam, min_max);
 	cam.v_rota = get_rotation(map, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:38:14 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/27 15:52:51 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:06:11 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 //___________INPUT___________
 //_____________________________
+
+//input_color.c
+
+int			key_color(int keycode, t_fdf *fdf);
 
 //input_height.c
 
@@ -43,6 +47,10 @@ int			rotate_top_left(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr);
 
 int			zoom_in(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr);
 int			zoom_out(t_mlxinfo *mlx, t_map map, t_cam *cam, t_rdr rdr);
+
+//input_show_tri.c
+
+int			key_show_tri(int keycode, t_fdf *fdf);
 
 //input_utils.c
 

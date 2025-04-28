@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/25 15:47:58 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:05:33 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,3 @@ void	debug_cam(t_cam cam, t_map map, int show_pts)
 			cam.pts[map.size - map.row_len].v2.x, cam.pts[map.size - map.row_len].v2.y,
 			cam.pts[map.size - 1].v2.x, cam.pts[map.size - 1].v2.y);
 }
-
-// void	debug_center(t_mlxinfo mlx)
-// {
-// 	t_point2 p0 = {W_WIDTH / 2, 0, 0xFF0000};
-// 	t_point2 p1 = {W_WIDTH / 2, W_HEIGHT, 0xFF0000};
-// 	t_point2 p2 = {0, W_HEIGHT / 2, 0xFF0000};
-// 	t_point2 p3 = {W_WIDTH, W_HEIGHT / 2, 0xFF0000};
-// 	draw_line(&mlx.img, p0, p1);
-// 	draw_line(&mlx.img, p2, p3);
-// }

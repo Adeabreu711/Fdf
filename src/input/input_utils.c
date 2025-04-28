@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/26 02:07:55 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:23:50 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	close_window(t_fdf *fdf)
 		mlx_loop_end(fdf->mlx.mlx);
 	free(fdf->map.pts);
 	free_cam(&fdf->cam);
-	free_mlx(&fdf->mlx, "");
+	free_mlx(&fdf->mlx);
 	exit(0);
 	return (0);
 }
