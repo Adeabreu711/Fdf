@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 16:21:07 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 20:29:00 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	rotate_projection(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
 	draw_fdf_box(mlx);
 	display_points(&mlx->img, cam, map);
 	put_img_to_window(mlx, 0, 0);
+	// draw_fdf_txt(mlx, NULL);
 	return (1);
 }
 

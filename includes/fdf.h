@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 16:21:07 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:31:07 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 # include "../libft/includes/color.h"
 # include "../libft/includes/vector.h"
 
+typedef struct s_ui
+{
+	char	*fd_nm;
+	char	*prj_nm;
+	char	*vrtcs;
+	char	*edgs;
+	char	*fcs;
+	char	*tris;
+	char	*zoom;
+}	t_ui;
+
 typedef struct s_fdf
 {
 	t_cam		cam;
@@ -31,11 +42,10 @@ typedef struct s_fdf
 	t_mlxinfo	mlx;
 }	t_fdf;
 
-
 //UI
 
 void		draw_fdf_box(t_mlxinfo *mlx);
-void		draw_text(t_mlxinfo *mlx, char *fd_nm);
+void		draw_fdf_txt(t_fdf *fdf, char *str);
 float		get_window_sf(void);
 
 //___________DEBUG___________

@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:39 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 16:23:34 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 18:44:57 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void	draw_fdf_box(t_mlxinfo *mlx)
 	dsp[1] = ft_nivec2(mlx->w_dim.x, mlx->w_dim.y);
 	draw_ui_box(mlx, dsp, ft_nivec2(540, 360), ft_nivec2(0, 0));
 	draw_ui_box(mlx, dsp, ft_nivec2(90, 21), ft_nivec2(-225, -200));
-	draw_ui_fbox(mlx, dsp, ft_nivec2(30, 15), ft_nivec2(305, -169));
+	draw_ui_fbox(mlx, dsp, ft_nivec2(30, 15), ft_nivec2(295, -172));
 }
