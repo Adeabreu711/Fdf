@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/29 02:45:26 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/29 02:57:04 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,10 +75,12 @@ $(NAME): $(MLX) $(LIB) $(OBJ_DIR) $(OBJ)
 clean:
 	rm -f $(OBJ)
 	make clean -C libft/
+	make clean -C minilibx-linux/
 
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft/
+	make clean -C minilibx-linux/
 
 re: fclean all
 
