@@ -6,22 +6,11 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:39 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 02:35:59 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:05:06 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-float	get_window_sf(void)
-{
-	t_fvec2	scale_f;
-
-	scale_f.x = (float)(W_WIDTH / 960);
-	scale_f.y = (float)(W_HEIGHT / 540);
-	if (scale_f.x < scale_f.y)
-		return (scale_f.x);
-	return (scale_f.y);
-}
 
 void	draw_ui_rect(t_imgd *img, t_ivec2 *w_dim, t_ivec2 dim)
 {

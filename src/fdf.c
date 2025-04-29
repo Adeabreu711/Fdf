@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 02:34:32 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:43:08 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[])
 	center_map_pivot(&fdf.map);
 	init_projections(&fdf.rdr);
 	init_gradients(&fdf.rdr);
-	fdf.cam = init_cam(fdf.map, fdf.mlx.w_dim, ft_nivec2(540, 360), fdf.rdr);
+	fdf.cam = init_cam(&fdf.map, fdf.mlx.w_dim, ft_nivec2(540, 360), &fdf.rdr);
 	draw_ui_rect(&fdf.mlx.img, &fdf.mlx.w_dim, ft_nivec2(540, 360));
 	display_points(&fdf.mlx.img, &fdf.cam, &fdf.map);
 	put_img_to_window(&fdf.mlx, 0, 0);

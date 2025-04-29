@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:05:31 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 23:25:38 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:01:17 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,36 @@
 
 int	translate_left(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
 {
-	cam->ctrl.offset.x -= 2;
+	if (cam->ctrl.offset.x <= cam->stgs.lmt_offset_x.x)
+		return (1);
+	cam->ctrl.offset.x -= 5;
 	refresh_projection(mlx, map, cam, rdr);
 	return (1);
 }
 
 int	translate_right(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
 {
-	cam->ctrl.offset.x += 2;
+	if (cam->ctrl.offset.x >= cam->stgs.lmt_offset_x.y)
+		return (1);
+	cam->ctrl.offset.x += 5;
 	refresh_projection(mlx, map, cam, rdr);
 	return (1);
 }
 
 int	translate_up(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
 {
-	cam->ctrl.offset.y -= 2;
+	if (cam->ctrl.offset.y <= cam->stgs.lmt_offset_y.x)
+		return (1);
+	cam->ctrl.offset.y -= 5;
 	refresh_projection(mlx, map, cam, rdr);
 	return (1);
 }
 
 int	translate_down(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
 {
-	cam->ctrl.offset.y += 2;
+	if (cam->ctrl.offset.y >= cam->stgs.lmt_offset_y.y)
+		return (1);
+	cam->ctrl.offset.y += 5;
 	refresh_projection(mlx, map, cam, rdr);
 	return (1);
 }

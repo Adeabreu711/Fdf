@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:47:00 by alex              #+#    #+#             */
-/*   Updated: 2025/04/29 01:32:51 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:44:02 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	free_cam(t_cam *cam)
 // return the the minimum and maximum values of the map.
 // [0]min_x, [1]max_x
 // [2]min_y, [3]max_y
-void	set_min_max_xy(t_map map, t_ivec2 mm[4], t_ivec2(*f)(t_ctrl, t_fvec3))
+void	set_min_max_xy(t_map *map, t_ivec2 mm[4], t_ivec2(*f)(t_ctrl, t_fvec3))
 {
 	int		i;
 	t_ivec2	pt;
@@ -59,10 +59,10 @@ void	set_min_max_xy(t_map map, t_ivec2 mm[4], t_ivec2(*f)(t_ctrl, t_fvec3))
 	while (++i < 4)
 		mm[i] = ft_nivec2(0, 0);
 	i = -1;
-	while (++i < map.size)
+	while (++i < map->size)
 	{
 		pt = f(new_cam(NULL, ft_nivec2(0, 0), ft_nivec2(0, 0)).ctrl,
-				ft_nfvec3(map.pts[i].v3.x, map.pts[i].v3.y, map.pts[i].v3.z));
+				ft_nfvec3(map->pts[i].v3.x, map->pts[i].v3.y, map->pts[i].v3.z));
 		if (pt.x < mm[0].x)
 			mm[0] = pt;
 		if (pt.x > mm[1].x)

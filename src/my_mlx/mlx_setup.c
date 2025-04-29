@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:33:24 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 14:22:46 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:09:17 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	mlx_setup_img(t_mlxinfo *mlx)
 		return (ft_fprintf(2, MLX_ERROR, RED), 0);
 	mlx->w_dim.x = W_WIDTH;
 	mlx->w_dim.y = W_HEIGHT;
+	mlx->w_sf = get_window_sf();
 	mlx->window = mlx_new_window(mlx->mlx, mlx->w_dim.x, mlx->w_dim.y, "fdf");
 	if (!mlx->window)
 		return (free_mlx(mlx), 0);

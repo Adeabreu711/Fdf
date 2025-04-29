@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:18:53 by alex              #+#    #+#             */
-/*   Updated: 2025/04/29 02:32:36 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:07:56 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_mlxinfo
 {
 	void	*mlx;
 	void	*window;
+	float	w_sf;
 	t_ivec2	w_dim;
 	t_imgd	img;
 }	t_mlxinfo;
@@ -72,6 +73,7 @@ int			free_mlx(t_mlxinfo *mlx);
 int			mlx_setup_img(t_mlxinfo *mlx);
 void		put_img_to_window(t_mlxinfo *mlx, int x, int y);
 
+float		get_window_sf(void);
 void		refresh_img(t_mlxinfo *mlx);
 void		img_init(t_imgd *img);
 
