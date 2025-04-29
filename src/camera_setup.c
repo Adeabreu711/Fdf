@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iop.c                                           :+:      :+:    :+:   */
+/*   camera_setup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 17:11:10 by alex              #+#    #+#             */
-/*   Updated: 2025/04/29 00:40:13 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/28 20:07:18 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/28 22:11:08 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//return nb1 % nb2
-int	ft_mod(int nb1, int nb2)
-{
-	return (nb1 % nb2);
-}
+#include "../includes/fdf.h"
 
-//return nb1 * nb2
-int	ft_mult(int nb1, int nb2)
+void	assign_display(t_ivec2 w_dim, t_ivec2 size, t_ivec2 dsp[2])
 {
-	return (nb1 * nb2);
-}
+	float	w_sf;
 
-//return nb1 / nb2
-int	ft_div(int nb1, int nb2)
-{
-	return (nb1 / nb2);
-}
-
-//return nb1 + nb2
-int	ft_sum(int nb1, int nb2)
-{
-	return (nb1 + nb2);
-}
-
-//return nb1 - nb2
-int	ft_sub(int nb1, int nb2)
-{
-	return (nb1 - nb2);
+	w_sf = get_window_sf();
+	size = ft_ivec2_op(size, ft_nivec2(w_sf, w_sf), ft_mult);
+	dsp[0] = ft_nivec2((w_dim.x - size.x) / 2, (w_dim.y - size.y) / 2);
+	dsp[1] = ft_nivec2((w_dim.x + size.x) / 2, (w_dim.y + size.y) / 2);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:51:52 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/21 21:49:04 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/28 22:31:21 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	parse_map(int fd, t_map *map)
 {
 	char	*r_map;
 
+	if (fd < 3)
+		return (0);
 	r_map = get_map(fd);
 	if (!r_map)
 		return (0);

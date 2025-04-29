@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:06:35 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/25 21:51:00 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:48:28 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ void	refresh_img(t_mlxinfo *mlx)
 	img_init(&mlx->img);
 }
 
-int	is_in_screen(t_ivec2 v2, t_ivec2 dsp)
+int	is_in_screen(t_ivec2 v2, t_ivec2 dsp[2])
 {
-	if (v2.x >= 0 && v2.x < dsp.x && v2.y >= 0 && v2.y < dsp.y)
+	if (v2.x >= dsp[0].x && v2.x < dsp[1].x
+		&& v2.y >= dsp[0].y && v2.y < dsp[1].y)
 		return (1);
 	return (0);
 }
 
 //put a pixel int the given image at the given coordonate.
-void	put_pixel(t_imgd *img, t_ivec2 v2, int color, t_ivec2 dsp)
+void	put_pixel(t_imgd *img, t_ivec2 v2, int color, t_ivec2 dsp[2])
 {
 	char	*dst;
 

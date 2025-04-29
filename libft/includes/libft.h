@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:16:01 by alexandre         #+#    #+#             */
-/*   Updated: 2025/04/19 21:46:59 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/29 00:37:26 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef unsigned short	t_uint16;
 typedef unsigned int	t_uint32;
 typedef unsigned long	t_uint64;
 
-# define INT_MIN (int)-0x80000000
+# define INT_MIN -0x80000000
 # define INT_MAX 2147483647
 
 //Part 1 : libc Functions

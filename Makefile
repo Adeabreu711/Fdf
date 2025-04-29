@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/28 16:35:00 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/29 02:45:26 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,26 @@ MLXFLAGS = -lXext -lX11 -lm -Lminilibx-linux -lmlx_Linux
 LIB = libft/libft.a
 MLX = minilibx-linux/libmlx_Linux.a
 
-IPT_DIR = input
+PRS = parsing
+IPT = input
+MYMLX = my_mlx
 
 SRC = \
-	fdf.c mlx_utils.c mlx_setup.c draw_line.c point_parsing.c \
-	map_parsing.c debug.c display_points.c color_utils.c \
-	projection.c camera.c camera_utils.c map_adapt.c map_checker.c \
-	rotation.c color_map.c draw_rect.c draw_ui.c \
-	$(IPT_DIR)/input.c $(IPT_DIR)/input_utils.c $(IPT_DIR)/input_rotation1.c \
-	$(IPT_DIR)/input_rotation2.c $(IPT_DIR)/input_show_tri.c $(IPT_DIR)/input_color.c\
-	$(IPT_DIR)/input_offset.c $(IPT_DIR)/input_scale.c $(IPT_DIR)/input_render.c $(IPT_DIR)/input_height.c
+	fdf.c \
+	debug.c display_points.c color_utils.c \
+	projection.c camera.c camera_utils.c \
+	rotation.c color_map.c draw_ui.c camera_setup.c \
+	\
+	$(PRS)/map_parsing.c $(PRS)/map_checker.c $(PRS)/map_adapt.c \
+	$(PRS)/point_parsing.c \
+	\
+	$(IPT)/input_offset.c $(IPT)/input_scale.c $(IPT)/input_render.c \
+	$(IPT)/input.c $(IPT)/input_utils.c $(IPT)/input_rotation1.c \
+	$(IPT)/input_rotation2.c $(IPT)/input_show_tri.c \
+	$(IPT)/input_height.c $(IPT)/input_color.c\
+	\
+	$(MYMLX)/mlx_utils.c $(MYMLX)/mlx_setup.c $(MYMLX)/draw_rect.c \
+	$(MYMLX)/draw_line.c $(MYMLX)/draw_filled_rect.c
 
 SRC_BONUS = \
 
@@ -41,13 +51,18 @@ all: $(NAME) $(OBJ_DIR)
 $(LIB):
 	make -C libft/
 
+$(MLX):
+	make -C minilibx-linux/
+
 #Création des fichiers .o
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 #Création du dossier OBJ_DIR
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/$(IPT_DIR)
+	mkdir -p $(OBJ_DIR)/$(PRS)
+	mkdir -p $(OBJ_DIR)/$(IPT)
+	mkdir -p $(OBJ_DIR)/$(MYMLX)
 
 #Compilation des fichiers .c en .o
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c

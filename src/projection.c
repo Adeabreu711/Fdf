@@ -6,16 +6,16 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:48:14 by alex              #+#    #+#             */
-/*   Updated: 2025/04/27 15:49:03 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 01:58:46 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
-t_ivec2	project_vibrant(t_cam cam, t_fvec3 v3);
-t_ivec2	project_flat(t_cam cam, t_fvec3 v3);
-t_ivec2	project_iso(t_cam cam, t_fvec3 v3);
+t_ivec2	project_vibrant(t_ctrl cam, t_fvec3 v3);
+t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3);
+t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3);
 
 void	init_projections(t_rdr *rdr)
 {
@@ -24,7 +24,7 @@ void	init_projections(t_rdr *rdr)
 	rdr->prj[2] = project_flat;
 }
 
-t_ivec2	project_iso(t_cam cam, t_fvec3 v3)
+t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2		v2;
 	float		angle;
@@ -36,7 +36,7 @@ t_ivec2	project_iso(t_cam cam, t_fvec3 v3)
 	return (v2);
 }
 
-t_ivec2	project_vibrant(t_cam cam, t_fvec3 v3)
+t_ivec2	project_vibrant(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2	v2;
 	float	dist;
@@ -50,7 +50,7 @@ t_ivec2	project_vibrant(t_cam cam, t_fvec3 v3)
 	return (v2);
 }
 
-t_ivec2	project_flat(t_cam cam, t_fvec3 v3)
+t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2	v2;
 

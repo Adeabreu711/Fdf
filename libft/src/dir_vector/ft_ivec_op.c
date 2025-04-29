@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ivec_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:10:41 by alex              #+#    #+#             */
-/*   Updated: 2025/04/16 17:25:27 by alex             ###   ########.fr       */
+/*   Updated: 2025/04/29 01:34:06 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_ivec3	ft_ivec3_op(t_ivec3 v3_1, t_ivec3 v3_2, int(*op)(int, int))
+//return the result of the given operation func between two ivec3.
+t_ivec3	ft_ivec3_op(t_ivec3 v3_1, t_ivec3 v3_2, int (*op)(int, int))
 {
 	t_ivec3	new_v3;
 
@@ -22,7 +23,8 @@ t_ivec3	ft_ivec3_op(t_ivec3 v3_1, t_ivec3 v3_2, int(*op)(int, int))
 	return (new_v3);
 }
 
-t_ivec2	ft_ivec2_op(t_ivec2 v2_1, t_ivec2 v2_2, int(*op)(int, int))
+//return the result of the given operation func between two ivec2.
+t_ivec2	ft_ivec2_op(t_ivec2 v2_1, t_ivec2 v2_2, int (*op)(int, int))
 {
 	t_ivec2	new_v2;
 

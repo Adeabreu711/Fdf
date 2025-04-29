@@ -6,17 +6,17 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:42 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/25 21:22:28 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 19:02:40 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp);
-static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp);
+static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2]);
+static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2]);
 
 //draw a line between the two given points.
-void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
+void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	if (ft_abs(p2.v2.y - p1.v2.y) > ft_abs(p2.v2.x - p1.v2.x))
 		return (draw_asc(img, p1, p2, dsp));
@@ -24,7 +24,7 @@ void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
 }
 
 //draw line taking the y axis as increment.
-static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
+static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	int		cursor;
 	int		color;
@@ -44,7 +44,7 @@ static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
 }
 
 //draw line taking the x axis as increment.
-static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp)
+static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	float	cursor;
 	int		color;

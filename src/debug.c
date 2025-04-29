@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:02:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 17:05:33 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/28 21:13:17 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	debug_cam(t_cam cam, t_map map, int show_pts)
 
 	i = -1;
 	ft_printf("\n___CAMERA___ \n");
-	printf("offset : (%i,%i)\nscale : %f\n", cam.offset.x, cam.offset.y, cam.scale);
+	printf("offset : (%i,%i)\nscale : %f\n", cam.ctrl.offset.x, cam.ctrl.offset.y, cam.ctrl.scale);
 	while (++i < map.size && show_pts)
 	{
 		ft_printf("point[%i] : (%i,%i), color : %x\n", i, cam.pts[i].v2.x,

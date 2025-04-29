@@ -6,12 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:37:35 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 17:37:30 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 02:22:51 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-static t_point2 new_pt2(t_ivec2 v2, int color)
+
+static t_point2	new_pt2(t_ivec2 v2, int color)
 {
 	t_point2	pt;
 
@@ -20,12 +21,12 @@ static t_point2 new_pt2(t_ivec2 v2, int color)
 	return (pt);
 }
 
-static void draw_edge(t_imgd *img, t_ivec2 p1, t_ivec2 p2, t_ivec2 dsp)
+static void	draw_edge(t_imgd *img, t_ivec2 p1, t_ivec2 p2, t_ivec2 dsp[2])
 {
 	draw_line(img, new_pt2(p1, 0xFFFFFF), new_pt2(p2, 0xFFFFFF), dsp);
 }
 
-void	draw_rect(t_imgd *img, t_ivec2 crns[2], int width, t_ivec2 dsp)
+void	draw_rect(t_imgd *img, t_ivec2 crns[2], int width, t_ivec2 dsp[2])
 {
 	int		i;
 	t_ivec2	top_right;
@@ -36,13 +37,13 @@ void	draw_rect(t_imgd *img, t_ivec2 crns[2], int width, t_ivec2 dsp)
 	i = -1;
 	while (++i < width)
 	{
-		draw_edge(img, ft_nivec2( crns[0].x - i,  crns[0].y - i),
+		draw_edge(img, ft_nivec2(crns[0].x - i, crns[0].y - i),
 			ft_nivec2(top_right.x + i, top_right.y - i), dsp);
 		draw_edge(img, ft_nivec2(top_right.x + i, top_right.y - i),
 			ft_nivec2(crns[1].x + i, crns[1].y + i), dsp);
 		draw_edge(img, ft_nivec2(crns[1].x + i, crns[1].y + i),
 			ft_nivec2(bottom_left.x - i, bottom_left.y + i), dsp);
 		draw_edge(img, ft_nivec2(bottom_left.x - i, bottom_left.y + i),
-			ft_nivec2( crns[0].x - i,  crns[0].y - i), dsp);
+			ft_nivec2(crns[0].x - i, crns[0].y - i), dsp);
 	}
 }
