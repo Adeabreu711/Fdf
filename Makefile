@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/29 02:57:04 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/29 16:22:33 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,14 @@ MLX = minilibx-linux/libmlx_Linux.a
 
 PRS = parsing
 IPT = input
+UI = ui
 MYMLX = my_mlx
 
 SRC = \
 	fdf.c \
 	debug.c display_points.c color_utils.c \
 	projection.c camera.c camera_utils.c \
-	rotation.c color_map.c draw_ui.c camera_setup.c \
+	rotation.c color_map.c camera_stgs.c \
 	\
 	$(PRS)/map_parsing.c $(PRS)/map_checker.c $(PRS)/map_adapt.c \
 	$(PRS)/point_parsing.c \
@@ -34,6 +35,8 @@ SRC = \
 	$(IPT)/input.c $(IPT)/input_utils.c $(IPT)/input_rotation1.c \
 	$(IPT)/input_rotation2.c $(IPT)/input_show_tri.c \
 	$(IPT)/input_height.c $(IPT)/input_color.c\
+	\
+	$(UI)/draw_fdf_box.c $(UI)/draw_fdf_txt.c \
 	\
 	$(MYMLX)/mlx_utils.c $(MYMLX)/mlx_setup.c $(MYMLX)/draw_rect.c \
 	$(MYMLX)/draw_line.c $(MYMLX)/draw_filled_rect.c
@@ -62,6 +65,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(PRS)
 	mkdir -p $(OBJ_DIR)/$(IPT)
+	mkdir -p $(OBJ_DIR)/$(UI)
 	mkdir -p $(OBJ_DIR)/$(MYMLX)
 
 #Compilation des fichiers .c en .o

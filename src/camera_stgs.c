@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:07:18 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 13:24:07 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:22:05 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	set_height_limit(t_cam *cam)
 	cam->stgs.lmt_height = ft_nfvec2(cam->ctrl.height, cam->ctrl.height);
 	cam->stgs.lmt_height.x -= cam->ctrl.height * 0.5f;
 	cam->stgs.lmt_height.y += cam->ctrl.height * 4.0f;
-	printf("height : %f, limit : %f, %f\n", cam->ctrl.height, cam->stgs.lmt_height.x, cam->stgs.lmt_height.y);
 }
 
 void	set_scale_limit(t_cam * cam)

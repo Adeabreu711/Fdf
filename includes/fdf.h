@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 02:02:58 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:21:07 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct s_fdf
 
 
 //UI
-void		draw_ui_rect(t_imgd *img, t_ivec2 *w_dim, t_ivec2 dim);
+
+void		draw_fdf_box(t_mlxinfo *mlx);
 void		draw_text(t_mlxinfo *mlx, char *fd_nm);
 float		get_window_sf(void);
 
