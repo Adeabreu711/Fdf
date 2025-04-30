@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 19:31:07 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:00:53 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ typedef struct s_fdf
 	t_cam		cam;
 	t_map		map;
 	t_rdr		rdr;
+	t_ui		ui;
 	t_mlxinfo	mlx;
 }	t_fdf;
 
 //UI
 
 void		draw_fdf_box(t_mlxinfo *mlx);
-void		draw_fdf_txt(t_fdf *fdf, char *str);
+void		draw_fdf_txt(t_fdf *fdf);
 float		get_window_sf(void);
+int			free_ui(t_ui *ui);
+void		nullset_ui(t_ui *ui);
+t_ui		init_ui(t_cam *cam, t_map *map, t_rdr *rdr, char *fd_name);
 
 //___________DEBUG___________
 //___________________________

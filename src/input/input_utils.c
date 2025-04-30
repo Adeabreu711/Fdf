@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 20:28:50 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:23:36 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@ int	close_window(t_fdf *fdf)
 	free(fdf->map.pts);
 	free_cam(&fdf->cam);
 	free_mlx(&fdf->mlx);
+	free_ui(&fdf->ui);
 	exit(0);
 	return (0);
 }
 
-int	refresh_projection(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
+int	refresh_projection(t_fdf *fdf)
 {
-	refresh_img(mlx);
-	apply_projection(map, cam, rdr->prj[cam->ctrl.prj_id]);
-	display_points(&mlx->img, cam, map);
-	draw_fdf_box(mlx);
-	put_img_to_window(mlx, 0, 0);
-	// draw_fdf_txt(fdf, NULL);
+	refresh_img(&fdf->mlx);
+	apply_projection(&fdf->map, &fdf->cam, fdf->rdr.prj[fdf->cam.ctrl.prj_id]);
+	display_points(&fdf->mlx.img, &fdf->cam, &fdf->map);
+	draw_fdf_box(&fdf->mlx);
+	put_img_to_window(&fdf->mlx, 0, 0);
+	draw_fdf_txt(fdf);
 	return (1);
 }
 

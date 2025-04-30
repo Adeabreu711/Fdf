@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:38:14 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 01:56:45 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:55:31 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,15 @@ int			key_render(int keycode, t_fdf *fdf);
 //input_rotation.c (1 & 2)
 
 int			key_rotation(int keycode, t_fdf *fdf);
-int			rotate_projection(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
-int			rotate_top_right(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
-int			rotate_bot_left(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
-int			rotate_bot_right(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
-int			rotate_top_left(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
+int			rotate_projection(t_fdf *fdf);
+int			rotate_top_right(t_fdf *fdf);
+int			rotate_bot_left(t_fdf *fdf);
+int			rotate_bot_right(t_fdf *fdf);
+int			rotate_top_left(t_fdf *fdf);
 
 //input_scale.c
 
-int			zoom_in(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
-int			zoom_out(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
+int			button_scale(int button, t_fdf *fdf);
 
 //input_show_tri.c
 
@@ -58,7 +57,7 @@ int			close_window(t_fdf *fdf);
 void		apply_rotation(t_map *map, t_cam *cam, char axis, float angle);
 void		apply_projection(t_map *map, t_cam *cam, t_ivec2(*f)(t_ctrl, t_fvec3));
 void		reset_rotation(t_map *map, t_cam *cam);
-int			refresh_projection(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr);
+int			refresh_projection(t_fdf *fdf);
 
 //input.c
 

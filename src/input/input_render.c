@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 00:13:03 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 13:54:27 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:52:05 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	swap_projection(t_fdf *fdf, int id)
 	fdf->cam.ctrl.prj_id = id;
 	reset_ctrls(&fdf->cam, &fdf->map, &fdf->rdr);
 	reset_rotation(&fdf->map, &fdf->cam);
-	refresh_projection(&fdf->mlx, &fdf->map, &fdf->cam, &fdf->rdr);
+	refresh_projection(fdf);
 	return (1);
 }
 

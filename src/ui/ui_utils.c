@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_show_tri.c                                   :+:      :+:    :+:   */
+/*   ui_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 13:00:22 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 12:53:29 by alde-abr         ###   ########.fr       */
+/*   Created: 2025/04/30 13:54:47 by alde-abr          #+#    #+#             */
+/*   Updated: 2025/04/30 14:01:35 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "../includes/input.h"
 
-int	key_show_tri(int keycode, t_fdf *fdf)
+void	nullset_ui(t_ui *ui)
 {
-	if (keycode == XK_t)
-	{
-		fdf->cam.ctrl.show_tri = !fdf->cam.ctrl.show_tri;
-		refresh_projection(fdf);
-		return (1);
-	}
-	return (0);
+	ui->vrtcs = NULL;
+	ui->edgs = NULL;
+	ui->fcs = NULL;
+	ui->tris = NULL;
+	ui->fd_nm = NULL;
+	ui->prj_nm = NULL;
+	ui->zoom = NULL;
+}
+
+int	free_ui(t_ui *ui)
+{
+	if (ui->edgs)
+		free(ui->edgs);
+	if (ui->vrtcs)
+		free(ui->vrtcs);
+	if (ui->fcs)
+		free(ui->fcs);
+	if (ui->tris)
+		free(ui->tris);
+	if (ui->prj_nm)
+		free(ui->prj_nm);
+	nullset_ui(ui);
+	return (1);
 }

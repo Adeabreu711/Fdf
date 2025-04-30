@@ -6,27 +6,36 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:33:00 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 13:56:03 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:55:57 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../includes/input.h"
 
-int	zoom_in(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
+int	zoom_in(t_fdf *fdf)
 {
-	if (cam->ctrl.scale >= cam->stgs.lmt_scale.y)
+	if (fdf->cam.ctrl.scale >= fdf->cam.stgs.lmt_scale.y)
 		return (1);
-	cam->ctrl.scale += 0.2f * cam->ctrl.scale / 2;
-	refresh_projection(mlx, map, cam, rdr);
+	fdf->cam.ctrl.scale += 0.2f * fdf->cam.ctrl.scale / 2;
+	refresh_projection(fdf);
 	return (1);
 }
 
-int	zoom_out(t_mlxinfo *mlx, t_map *map, t_cam *cam, t_rdr *rdr)
+int	zoom_out(t_fdf *fdf)
 {
-	if (cam->ctrl.scale <= cam->stgs.lmt_scale.x)
+	if (fdf->cam.ctrl.scale <= fdf->cam.stgs.lmt_scale.x)
 		return (1);
-	cam->ctrl.scale -= 0.2f * cam->ctrl.scale / 2;
-	refresh_projection(mlx, map, cam, rdr);
+	fdf->cam.ctrl.scale -= 0.2f * fdf->cam.ctrl.scale / 2;
+	refresh_projection(fdf);
 	return (1);
+}
+
+int	button_scale(int button, t_fdf *fdf)
+{
+	if (button == 4)
+		return (zoom_in(fdf));
+	else if (button == 5)
+		return (zoom_out(fdf));
+	return (0);
 }

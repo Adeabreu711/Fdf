@@ -6,28 +6,48 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:34:05 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 21:04:07 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:11:07 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	set_vert_info(t_map	*map, t_ui *ui)
+char	*join_str_int(char *txt, int nb)
 {
-	ui->vrtcs = ft_strjoin("Vertices  : ", ft_itoa(map->size));
-	ui->edgs = ft_strjoin("Edges     : ", ft_itoa(map->size));
-	ui->fcs = ft_strjoin("Faces     : ", ft_itoa(map->size / 2));
-	ui->tris = ft_strjoin("Triangles : ", ft_itoa(map->size / 2 * 2));
-	printf("verts : %s\n edges : %s\n faces : %s\ntries : %s\n",
-		ui->vrtcs, ui->edgs, ui->fcs, ui->tris);
+	char	*mrg;
+	char	*tmp;
+
+	tmp =	ft_itoa(nb);
+	mrg = ft_strjoin(txt, tmp);
+	free(tmp);
+	return (mrg);
+}
+void	refresh_ui_zoom(t_cam *cam, t_ui *ui)
+{
+	// char *str;
+	float	percent;
+
+	if (ui->zoom)
+		free(ui->zoom);
+	percent = (cam->ctrl.scale - cam->stgs.lmt_scale.x * 100 / (cam->stgs.lmt_scale.y - cam->stgs.lmt_scale.x));
+	printf ("percent : %f\n", percent);
+	(void)cam;
 }
 
-void	init_ui(t_cam *cam, t_map *map, t_rdr *rdr, char *fd_name)
+t_ui	init_ui(t_cam *cam, t_map *map, t_rdr *rdr, char *fd_name)
 {
 	t_ui	ui;
 
-	set_vert_info(map, &ui);
-	(void)cam;
+	nullset_ui(&ui);
+	ui.fd_nm = ft_strrchr(fd_name, '/') + 1;
+	ui.prj_nm = ft_strdup("Isometric");
+	ui.vrtcs = join_str_int("Vertices   ", map->size);
+	ui.edgs = join_str_int("Edges      ",
+		map->size * 2 - (map->row_len + (map->size / map->row_len)));
+	ui.fcs = join_str_int("Faces      ", map->size / 2);
+	ui.tris = join_str_int("Triangles  ", map->size / 4);
+	// ui.zoom = join_str_int("Zoom  : ", get_zoom_prc(cam));
+	refresh_ui_zoom(cam, &ui);
 	(void)rdr;
-	(void)fd_name;
+	return (ui);
 }

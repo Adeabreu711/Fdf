@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_setup.c                                     :+:      :+:    :+:   */
+/*   camera_stgs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:07:18 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 15:22:05 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:04:20 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,6 @@ void	set_limits(t_cam *cam)
 	set_scale_limit(cam);
 	set_offset_limit(cam);
 	set_height_limit(cam);
+	printf("scale limit (%f,%f)\nscale : %f\n",
+		cam->stgs.lmt_scale.x, cam->stgs.lmt_scale.y, cam->ctrl.scale);
 }

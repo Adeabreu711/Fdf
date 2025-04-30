@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:25:08 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 20:55:27 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:02:25 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int	main(int argc, char *argv[])
 	init_projections(&fdf.rdr);
 	init_gradients(&fdf.rdr);
 	fdf.cam = init_cam(&fdf.map, fdf.mlx.w_dim, ft_nivec2(540, 360), &fdf.rdr);
+	fdf.ui = init_ui(&fdf.cam, &fdf.map, &fdf.rdr, argv[1]);
 	draw_fdf_box(&fdf.mlx);
 	display_points(&fdf.mlx.img, &fdf.cam, &fdf.map);
 	put_img_to_window(&fdf.mlx, 0, 0);
-	draw_fdf_txt(&fdf, ft_strrchr(argv[1], '/') + 1);
+	draw_fdf_txt(&fdf);
 	receive_inputs(&fdf);
 	mlx_loop(fdf.mlx.mlx);
 	return (close_window(&fdf));

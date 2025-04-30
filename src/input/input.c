@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:46:06 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 01:56:39 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:57:38 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	mouse_hook(int button, int x, int y, t_fdf *fdf)
 {
 	(void)x;
 	(void)y;
-	if (button == 4)
-		zoom_in(&fdf->mlx, &fdf->map, &fdf->cam, &fdf->rdr);
-	else if (button == 5)
-		zoom_out(&fdf->mlx, &fdf->map, &fdf->cam, &fdf->rdr);
+	button_scale(button, fdf);
 	return (0);
 }
 

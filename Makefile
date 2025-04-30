@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/29 19:35:13 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/04/30 13:55:11 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = \
 	$(IPT)/input_height.c $(IPT)/input_color.c\
 	\
 	$(UI)/draw_fdf_box.c $(UI)/draw_fdf_txt.c $(UI)/ui_setup.c \
+	$(UI)/ui_utils.c \
 	\
 	$(MYMLX)/mlx_utils.c $(MYMLX)/mlx_setup.c $(MYMLX)/draw_rect.c \
 	$(MYMLX)/draw_line.c $(MYMLX)/draw_filled_rect.c
