@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:54:47 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 14:01:35 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/04/30 20:54:40 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	free_ui(t_ui *ui)
 		free(ui->tris);
 	if (ui->prj_nm)
 		free(ui->prj_nm);
+	if (ui->zoom)
+		free(ui->zoom);
 	nullset_ui(ui);
 	return (1);
 }
