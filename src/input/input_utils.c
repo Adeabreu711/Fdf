@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 13:23:36 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:36:18 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void	reset_rotation(t_map *map, t_cam *cam);
 void	apply_rotation(t_map *map, t_cam *cam, char axis, float angle);
-void	apply_projection(t_map *map, t_cam *cam, t_ivec2(*f)(t_ctrl, t_fvec3));
+void	apply_projection(t_map *map, t_cam *cam, t_prj_func);
 
+// Close the window, free allocated resources, and exit the program
 int	close_window(t_fdf *fdf)
 {
 	if (fdf && fdf->mlx.mlx)
@@ -29,17 +30,19 @@ int	close_window(t_fdf *fdf)
 	return (0);
 }
 
+// Refresh image, update the display, and redraw UI elements
 int	refresh_projection(t_fdf *fdf)
 {
 	refresh_img(&fdf->mlx);
 	apply_projection(&fdf->map, &fdf->cam, fdf->rdr.prj[fdf->cam.ctrl.prj_id]);
 	display_points(&fdf->mlx.img, &fdf->cam, &fdf->map);
-	draw_fdf_box(&fdf->mlx);
+	draw_ui_box(fdf);
 	put_img_to_window(&fdf->mlx, 0, 0);
-	draw_fdf_txt(fdf);
+	draw_ui_txt(fdf);
 	return (1);
 }
 
+// Reset camera points to the original map rotation
 void	reset_rotation(t_map *map, t_cam *cam)
 {
 	int	i;
@@ -50,6 +53,7 @@ void	reset_rotation(t_map *map, t_cam *cam)
 			(map->pts[i].v3.x, map->pts[i].v3.y, map->pts[i].v3.z);
 }
 
+// Apply rotation to camera points around the given axis and angle
 void	apply_rotation(t_map *map, t_cam *cam, char axis, float angle)
 {
 	int	i;
@@ -59,7 +63,8 @@ void	apply_rotation(t_map *map, t_cam *cam, char axis, float angle)
 		cam->v_rota[i] = rotate(cam->v_rota[i], angle, axis);
 }
 
-void	apply_projection(t_map *map, t_cam *cam, t_ivec2(*f)(t_ctrl, t_fvec3))
+// Apply projection to rotated map points and store results in camera points
+void	apply_projection(t_map *map, t_cam *cam, t_prj_func f)
 {
 	int	i;
 

@@ -6,14 +6,15 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:05:31 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 12:59:30 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:17:33 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../includes/input.h"
 
-int	translate_left(t_fdf *fdf)
+// Move camera to the left if not at camera limits
+static int	translate_left(t_fdf *fdf)
 {
 	if (fdf->cam.ctrl.offset.x <= fdf->cam.stgs.lmt_offset_x.x)
 		return (1);
@@ -22,7 +23,8 @@ int	translate_left(t_fdf *fdf)
 	return (1);
 }
 
-int	translate_right(t_fdf *fdf)
+// Move camera to the right if not at camera limits
+static int	translate_right(t_fdf *fdf)
 {
 	if (fdf->cam.ctrl.offset.x >= fdf->cam.stgs.lmt_offset_x.y)
 		return (1);
@@ -31,7 +33,8 @@ int	translate_right(t_fdf *fdf)
 	return (1);
 }
 
-int	translate_up(t_fdf *fdf)
+// Move camera up if not at camera limits
+static int	translate_up(t_fdf *fdf)
 {
 	if (fdf->cam.ctrl.offset.y <= fdf->cam.stgs.lmt_offset_y.x)
 		return (1);
@@ -40,7 +43,8 @@ int	translate_up(t_fdf *fdf)
 	return (1);
 }
 
-int	translate_down(t_fdf *fdf)
+// Move camera down if not at camera limits
+static int	translate_down(t_fdf *fdf)
 {
 	if (fdf->cam.ctrl.offset.y >= fdf->cam.stgs.lmt_offset_y.y)
 		return (1);
@@ -49,6 +53,7 @@ int	translate_down(t_fdf *fdf)
 	return (1);
 }
 
+// Handle key inputs to move the camera in display
 int	key_offset(int keycode, t_fdf *fdf)
 {
 	if (keycode == XK_d)

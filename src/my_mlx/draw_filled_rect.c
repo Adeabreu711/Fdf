@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 02:25:46 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 02:33:11 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/01 01:05:50 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_rect_bounds(t_ivec2 crns[2], t_ivec2 *start, t_ivec2 *end)
 	}
 }
 
-void	draw_filled_rect(t_imgd *img, t_ivec2 crns[2], t_ivec2 dsp[2])
+void	draw_frect(t_imgd *img, t_ivec2 crns[2], t_ivec2 dsp[2], int color)
 {
 	t_ivec2	start;
 	t_ivec2	end;
@@ -49,7 +49,7 @@ void	draw_filled_rect(t_imgd *img, t_ivec2 crns[2], t_ivec2 dsp[2])
 		curr.x = start.x;
 		while (curr.x <= end.x)
 		{
-			put_pixel(img, curr, 0XFFFFFF, dsp);
+			put_pixel(img, curr, color, dsp);
 			curr.x++;
 		}
 	}

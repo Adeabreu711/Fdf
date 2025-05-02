@@ -6,14 +6,14 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:54:49 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 18:18:48 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:06:18 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
+#ifndef MAP_H
+# define MAP_H
 
-#include "fdf.h"
+# include "fdf.h"
 
 typedef struct s_map
 {

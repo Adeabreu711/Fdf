@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:38:14 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 12:55:31 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:05:42 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			key_show_tri(int keycode, t_fdf *fdf);
 
 int			close_window(t_fdf *fdf);
 void		apply_rotation(t_map *map, t_cam *cam, char axis, float angle);
-void		apply_projection(t_map *map, t_cam *cam, t_ivec2(*f)(t_ctrl, t_fvec3));
+void		apply_projection(t_map *map, t_cam *cam, t_prj_func f);
 void		reset_rotation(t_map *map, t_cam *cam);
 int			refresh_projection(t_fdf *fdf);
 

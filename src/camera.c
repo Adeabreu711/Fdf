@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/04/30 14:11:15 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:03:47 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_fvec3	*get_rotation(t_map *map, char axis, float angle)
 }
 
 //return a list of point projected to the given direction.
-static t_point2	*get_projection(t_map *mp, t_cam *cm, t_ivec2(*f)(t_ctrl, t_fvec3))
+static t_point2	*get_projection(t_map *mp, t_cam *cm, t_prj_func f)
 {
 	t_point2	*pts;
 	int			i;

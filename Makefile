@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/04/30 13:55:11 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/05/02 01:57:40 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MYMLX = my_mlx
 
 SRC = \
 	fdf.c \
-	debug.c display_points.c color_utils.c \
+	display_points.c color_utils.c \
 	projection.c camera.c camera_utils.c \
 	rotation.c color_map.c camera_stgs.c \
 	\

@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:58:21 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 18:48:42 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:04:09 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_rdr
 	t_ivec3		c_grad[COLOR_S];
 }	t_rdr;
 
+typedef t_ivec2	(*t_prj_func)(t_ctrl, t_fvec3);
 
 //___________CAMERA___________
 
@@ -60,7 +61,7 @@ typedef struct s_rdr
 t_cam		init_cam(t_map *map, t_ivec2 w_dim, t_ivec2 size, t_rdr *rdr);
 t_ivec2		get_center_offset(t_cam *cam, t_ivec2 *min_max);
 float		get_scale(t_cam *cam, t_ivec2 *min_max);
-void		set_display(t_ivec2 w_dim, t_ivec2 size, t_ivec2	dsp[2]);
+void		set_display(t_ivec2 w_dim, t_ivec2 size, t_ivec2 dsp[2]);
 
 //camera_setup.c
 
@@ -70,7 +71,7 @@ void		set_limits(t_cam *cam);
 
 t_cam		new_cam(t_point2 *pts, t_ivec2 tl_crn, t_ivec2 br_crn);
 void		free_cam(t_cam *cam);
-void		set_min_max_xy(t_map *map, t_ivec2 mm[4], t_ivec2(*f)(t_ctrl, t_fvec3));
+void		set_min_max_xy(t_map *map, t_ivec2 mm[4], t_prj_func f);
 t_ivec2		get_min_max_z(t_map *map);
 
 //projection.c

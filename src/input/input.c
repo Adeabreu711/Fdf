@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:46:06 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 20:57:42 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:36:59 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../includes/input.h"
 #include "X11/keysym.h"
 
+// Set up event handlers for window close, key press, and mouse click
 void	receive_inputs(t_fdf *fdf)
 {
 	mlx_hook(fdf->mlx.window, 17, 0, close_window, fdf);
@@ -21,6 +22,7 @@ void	receive_inputs(t_fdf *fdf)
 	mlx_hook(fdf->mlx.window, 4, 1L << 2, mouse_hook, fdf);
 }
 
+// Handle mouse input for zooming in and out
 int	mouse_hook(int button, int x, int y, t_fdf *fdf)
 {
 	(void)x;
@@ -29,6 +31,7 @@ int	mouse_hook(int button, int x, int y, t_fdf *fdf)
 	return (0);
 }
 
+// Handle key press events for various actions (color, height, etc.)
 int	key_hook(int keycode, t_fdf *fdf)
 {
 	if (key_color(keycode, fdf)
