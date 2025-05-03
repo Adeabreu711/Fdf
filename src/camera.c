@@ -6,13 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:38:50 by alex              #+#    #+#             */
-/*   Updated: 2025/05/02 02:03:47 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:59:36 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-//return a list of point rotated to the given direction.
+// Return a list of points rotated to the given direction (axis & angle)
 static t_fvec3	*get_rotation(t_map *map, char axis, float angle)
 {
 	t_fvec3	*pts;
@@ -28,7 +28,7 @@ static t_fvec3	*get_rotation(t_map *map, char axis, float angle)
 	return (pts);
 }
 
-//return a list of point projected to the given direction.
+// Return a list of points projected to the given direction using prj function
 static t_point2	*get_projection(t_map *mp, t_cam *cm, t_prj_func f)
 {
 	t_point2	*pts;
@@ -46,7 +46,7 @@ static t_point2	*get_projection(t_map *mp, t_cam *cm, t_prj_func f)
 	return (pts);
 }
 
-//return the scale needed to show the map at 80% of the size of the display.
+// Return the scale needed to show the map at 80% of the display size
 float	get_scale(t_cam *cam, t_ivec2 *min_max)
 {
 	t_fvec2	scale;
@@ -62,7 +62,7 @@ float	get_scale(t_cam *cam, t_ivec2 *min_max)
 	return (scale.y * 0.8f);
 }
 
-//return a ivec2 with the offset needed to place the map in the center.
+// Return the offset needed to place the map in the center of the display
 t_ivec2	get_center_offset(t_cam *cam, t_ivec2 *min_max)
 {
 	t_ivec2	prj_ctr;
@@ -78,7 +78,7 @@ t_ivec2	get_center_offset(t_cam *cam, t_ivec2 *min_max)
 	return (offset);
 }
 
-//return a camera with the settings adapted to the given projection.
+// Return a camera with the settings adapted to the given projection
 t_cam	init_cam(t_map *map, t_ivec2 w_dim, t_ivec2 size, t_rdr *rdr)
 {
 	t_cam	cam;

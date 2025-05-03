@@ -6,12 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 00:39:00 by alex              #+#    #+#             */
-/*   Updated: 2025/04/23 15:47:12 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:00:53 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+// Convert an integer color value to a t_color struct
 t_color	int_to_rgb(int color)
 {
 	t_color	c;
@@ -22,11 +23,13 @@ t_color	int_to_rgb(int color)
 	return (c);
 }
 
+// Convert a t_color struct to an integer color value
 int	rgb_to_int(t_color c)
 {
 	return ((c.r << 16) | (c.g << 8) | c.b);
 }
 
+// Linearly interpolate between two colors based on a given gradient
 int	lerp_color(int color1, int color2, float grad)
 {
 	t_color	c1;

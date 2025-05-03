@@ -6,7 +6,7 @@
 #    By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 15:08:31 by alde-abr          #+#    #+#              #
-#    Updated: 2025/05/02 01:57:40 by alde-abr         ###   ########.fr        #
+#    Updated: 2025/05/02 18:57:28 by alde-abr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC = \
 	$(UI)/ui_utils.c \
 	\
 	$(MYMLX)/mlx_utils.c $(MYMLX)/mlx_setup.c $(MYMLX)/draw_rect.c \
-	$(MYMLX)/draw_line.c $(MYMLX)/draw_filled_rect.c
+	$(MYMLX)/draw_line.c $(MYMLX)/put_pixel.c
 
 SRC_BONUS = \
 

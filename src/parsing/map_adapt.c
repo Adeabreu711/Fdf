@@ -6,14 +6,40 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 23:03:24 by alex              #+#    #+#             */
-/*   Updated: 2025/04/25 15:58:53 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:44:31 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-//return the number of columns encountred.
-int	get_col_len(char *r_map)
+static int	get_col_len(char *r_map);
+static int	get_ms_points(char *r_map, int *row_max, int is_row_max);
+static int	fill_row(char *n_map, int pad);
+static char	*fix_map(char *n_map, char *r_map, int row_max);
+
+// Converts the given invalid map into a valid one by filling in missing values
+// Returns 0 on failure, 1 on success
+int	adapt_map(char **r_map, t_map *map)
+{
+	char	*n_map;
+	int		ms_pts;
+
+	ms_pts = 0;
+	map->row_len = 0;
+	map->size = 0;
+	ms_pts = get_ms_points(*r_map, &map->row_len, 0);
+	n_map = ft_calloc(ft_strlen(*r_map) + ms_pts * 2 + 1, sizeof(char));
+	if (!n_map)
+		return (ft_printf(ERR), 0);
+	fix_map(n_map, *r_map, map->row_len);
+	free(*r_map);
+	*r_map = n_map;
+	map->size = get_col_len(*r_map) * map->row_len;
+	return (1);
+}
+
+// Returns the number of columns encountered.
+static int	get_col_len(char *r_map)
 {
 	int	i;
 	int	col_len;
@@ -28,9 +54,9 @@ int	get_col_len(char *r_map)
 	return (col_len);
 }
 
-//out the max points in a row in the first half and
-//return the number of missing points in the second.
-int	get_ms_points(char *r_map, int *row_max, int is_row_max)
+// Calculates and returns the number of missing points in rows
+// while updating row_max with the maximum row length encountered
+static int	get_ms_points(char *r_map, int *row_max, int is_row_max)
 {
 	int		ms_pts;
 	int		row_size;
@@ -57,9 +83,8 @@ int	get_ms_points(char *r_map, int *row_max, int is_row_max)
 	return (ms_pts);
 }
 
-//fill the given row of points according to the given padding
-//return the number of char writed.
-int	fill_row(char *n_map, int pad)
+// Fills a row with padding and returns the number of characters written
+static int	fill_row(char *n_map, int pad)
 {
 	int	i;
 
@@ -72,8 +97,8 @@ int	fill_row(char *n_map, int pad)
 	return (i);
 }
 
-//fill the given row of points according to the given padding.
-char	*fix_map(char *n_map, char *r_map, int row_max)
+// Fixes the map by filling rows with missing points; Returns the updated map
+static char	*fix_map(char *n_map, char *r_map, int row_max)
 {
 	int		i;
 	int		j;
@@ -99,26 +124,4 @@ char	*fix_map(char *n_map, char *r_map, int row_max)
 	if (n_map[j - 1] == '\n')
 		n_map[j - 1] = '\0';
 	return (n_map);
-}
-
-//convert the given invalid readed map into a valid one.
-//fill new map value.
-//return 0 if fail, 1 if success.
-int	adapt_map(char **r_map, t_map *map)
-{
-	char	*n_map;
-	int		ms_pts;
-
-	ms_pts = 0;
-	map->row_len = 0;
-	map->size = 0;
-	ms_pts = get_ms_points(*r_map, &map->row_len, 0);
-	n_map = ft_calloc(ft_strlen(*r_map) + ms_pts * 2 + 1, sizeof(char));
-	if (!n_map)
-		return (0);
-	fix_map(n_map, *r_map, map->row_len);
-	free(*r_map);
-	*r_map = n_map;
-	map->size = get_col_len(*r_map) * map->row_len;
-	return (1);
 }

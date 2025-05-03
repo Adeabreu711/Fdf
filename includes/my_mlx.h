@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:18:53 by alex              #+#    #+#             */
-/*   Updated: 2025/05/01 17:17:54 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:31:43 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_mlxinfo
 
 void		put_pixel(t_imgd *img, t_ivec2 v2, int color, t_ivec2 dsp[2]);
 void		draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2]);
-void		draw_rect(t_imgd *img, t_ivec2 crns[2], int width, t_ivec2 dsp[2]);
-void		draw_frect(t_imgd *img, t_ivec2 crns[2], t_ivec2 dsp[2], int color);
+void		draw_rect(t_mlxinfo *mlx, t_ivec2 crns[2], int width, int color);
+void		draw_frect(t_mlxinfo *img, t_ivec2 crns[2], int color);
 
 int			lerp_color(int color1, int color2, float grad);
 int			rgb_to_int(t_color c);

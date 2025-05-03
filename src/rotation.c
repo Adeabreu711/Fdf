@@ -6,17 +6,18 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:55:18 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/26 02:11:29 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:12:57 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
-t_fvec3	rotate_x(t_fvec3 v3, float rota);
-t_fvec3	rotate_y(t_fvec3 v3, float rota);
-t_fvec3	rotate_z(t_fvec3 v3, float rota);
+static t_fvec3	rotate_x(t_fvec3 v3, float rota);
+static t_fvec3	rotate_y(t_fvec3 v3, float rota);
+static t_fvec3	rotate_z(t_fvec3 v3, float rota);
 
+// Rotates a vector by a given angle around the axis (x, y, z)
 t_fvec3	rotate(t_fvec3 v3, float rota, char axis)
 {
 	if (axis == 'x')
@@ -28,7 +29,8 @@ t_fvec3	rotate(t_fvec3 v3, float rota, char axis)
 	return (ft_nfvec3((float)v3.x, (float)v3.y, (float)v3.z));
 }
 
-t_fvec3	rotate_x(t_fvec3 v3, float rota)
+// Rotates the vector around the X-axis by the specified angle
+static t_fvec3	rotate_x(t_fvec3 v3, float rota)
 {
 	t_fvec3	result;
 	t_fvec3	m_x;
@@ -44,7 +46,8 @@ t_fvec3	rotate_x(t_fvec3 v3, float rota)
 	return (result);
 }
 
-t_fvec3	rotate_y(t_fvec3 v3, float rota)
+// Rotates the vector around the Y-axis by the specified angle
+static t_fvec3	rotate_y(t_fvec3 v3, float rota)
 {
 	t_fvec3	result;
 	t_fvec3	m_x;
@@ -60,7 +63,8 @@ t_fvec3	rotate_y(t_fvec3 v3, float rota)
 	return (result);
 }
 
-t_fvec3	rotate_z(t_fvec3 v3, float rota)
+// Rotates the vector around the Z-axis by the specified angle
+static t_fvec3	rotate_z(t_fvec3 v3, float rota)
 {
 	t_fvec3	result;
 	t_fvec3	m_x;

@@ -6,12 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:12:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 19:33:16 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:00:18 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+// Initialize the color gradients for the renderer
 void	init_gradients(t_rdr *rdr)
 {
 	rdr->c_grad[0] = ft_nivec3(0x1f2041, 0x4b3f72, 0xffc857);
@@ -19,6 +20,7 @@ void	init_gradients(t_rdr *rdr)
 	rdr->c_grad[2] = ft_nivec3(0x000000, 0x9D0191, 0xFD3A69);
 }
 
+// Color the map points based on the height using given colors
 void	color_map(t_map *map, t_cam *cam, t_ivec3 colors)
 {
 	int		i;
@@ -41,6 +43,7 @@ void	color_map(t_map *map, t_cam *cam, t_ivec3 colors)
 	}
 }
 
+// Set the default colors from the map points to the camera points
 void	get_dflt_color(t_map *map, t_cam *cam)
 {
 	int	i;

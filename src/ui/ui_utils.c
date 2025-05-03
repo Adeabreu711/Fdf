@@ -6,12 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:54:47 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 20:54:40 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:53:57 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+// Reset all UI elements to NULL
 void	nullset_ui(t_ui *ui)
 {
 	ui->vrtcs = NULL;
@@ -23,6 +24,7 @@ void	nullset_ui(t_ui *ui)
 	ui->zoom = NULL;
 }
 
+// Free all allocated UI elements and reset to NULL
 int	free_ui(t_ui *ui)
 {
 	if (ui->edgs)

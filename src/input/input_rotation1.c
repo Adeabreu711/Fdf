@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:33:00 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:40:37 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	rotate_projection(t_fdf *fdf)
 	draw_ui_txt(fdf);
 	return (1);
 }
-
 
 // Rotate view to the left (increment z rotation)
 static int	rotate_left(t_fdf *fdf)

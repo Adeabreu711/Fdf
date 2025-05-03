@@ -6,15 +6,43 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:51:52 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 22:31:21 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:46:19 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#define ERROR 0
 
-//return the readed map in a string.
-char	*get_map(int fd)
+static char	*get_map(int fd);
+static int	check_valid_size(int count, int line_size);
+static int	get_map_size(char *r_map, int *out_raw_len);
+
+// Parse map from file, fill map struct, return 1 if success, 0 if fail
+int	parse_map(int fd, t_map *map)
+{
+	char	*r_map;
+
+	if (fd < 3)
+		return (ft_printf(ERR_INVALID_FD), 0);
+	r_map = get_map(fd);
+	if (!r_map)
+		return (ft_printf(ERR), 0);
+	r_map = ft_strupcase(r_map, "x");
+	if (!is_map_valid(r_map))
+		return (free(r_map), 0);
+	map->size = get_map_size(r_map, &map->row_len);
+	if (map->row_len == 0)
+	{
+		if (!adapt_map(&r_map, map))
+			return (free(r_map), 0);
+	}
+	map->pts = get_points(r_map, map->size, map->row_len);
+	if (!map->pts)
+		return (ft_printf(ERR), free(r_map), 0);
+	return (free(r_map), 1);
+}
+
+// Reads the full map from a file and returns it as a string
+static char	*get_map(int fd)
 {
 	t_sbuild	*sb;
 	char		*r_map;
@@ -39,7 +67,7 @@ char	*get_map(int fd)
 	return (r_map);
 }
 
-//check if the number of points in a row is the same in all columns.
+// Check if all rows have same size, return valid size or 0
 static int	check_valid_size(int count, int line_size)
 {
 	static int	line_count = 1;
@@ -51,13 +79,12 @@ static int	check_valid_size(int count, int line_size)
 	}
 	line_count++;
 	if (line_size * 10 != (count * 10) / line_count)
-		return (ERROR);
+		return (0);
 	return (line_size);
 }
 
-//return 1 if the readed map dont contain errors, 0 if not.
-//assign to the given map the row len.
-int	get_map_size(char *r_map, int *out_raw_len)
+// Get map size and row length, return 1 if valid, 0 if error
+static int	get_map_size(char *r_map, int *out_raw_len)
 {
 	int	i;
 	int	count;
@@ -75,30 +102,4 @@ int	get_map_size(char *r_map, int *out_raw_len)
 			count++;
 	}
 	return (count);
-}
-
-// return 1 if the map parsing succeed, 0 if not.
-// get all map info from the given fd.
-int	parse_map(int fd, t_map *map)
-{
-	char	*r_map;
-
-	if (fd < 3)
-		return (0);
-	r_map = get_map(fd);
-	if (!r_map)
-		return (0);
-	r_map = ft_strupcase(r_map, "x");
-	if (!is_map_valid(r_map))
-		return (0);
-	map->size = get_map_size(r_map, &map->row_len);
-	if (map->row_len == 0)
-	{
-		if (!adapt_map(&r_map, map))
-			return (free(r_map), 0);
-	}
-	map->pts = get_points(r_map, map->size, map->row_len);
-	if (!map->pts)
-		return (free(r_map), 0);
-	return (free(r_map), 1);
 }

@@ -6,44 +6,28 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:33:24 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/30 13:25:21 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:31:50 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-#define MLX_ERROR "%serror :\e[0m mlx pointer is null\n"
-#define WINDOW_ERROR "%serror :\e[0m window pointer is null\n"
+#define ERR_MLX "%serror :\e[0m mlx pointer is null\n"
 
-//free the memory of the mlxinfo struct.
-int	free_mlx(t_mlxinfo *mlx)
-{
-	if (mlx->img.img)
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-	if (mlx->window)
-		mlx_destroy_window(mlx->mlx, mlx->window);
-	if (mlx->mlx)
-	{
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-	}
-	return (0);
-}
-
-//put the image to the window of the mlxinfo struct.
+// Displays the image in the window at the given coordinates
 void	put_img_to_window(t_mlxinfo *mlx, int x, int y)
 {
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img.img, x, y);
 }
 
-//initialize the image data.
+// Initializes image data fields for direct pixel access
 void	img_init(t_imgd *img)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 }
 
-//setup the data of the mlxinfo struct.
+// Sets up the mlx window and image; returns 1 on success, 0 on error
 int	mlx_setup_img(t_mlxinfo *mlx)
 {
 	mlx->mlx = NULL;
@@ -51,7 +35,7 @@ int	mlx_setup_img(t_mlxinfo *mlx)
 	mlx->img.addr = NULL;
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
-		return (ft_fprintf(2, MLX_ERROR, RED), 0);
+		return (ft_fprintf(2, ERR_MLX, RED), 0);
 	mlx->w_dim.x = W_WIDTH;
 	mlx->w_dim.y = W_HEIGHT;
 	mlx->w_sf = get_window_sf();

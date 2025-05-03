@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:31:42 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/28 19:02:40 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:23:51 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2]);
 static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2]);
 
-//draw a line between the two given points.
+// Draws a line between two points, axis chosen by steepness
 void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	if (ft_abs(p2.v2.y - p1.v2.y) > ft_abs(p2.v2.x - p1.v2.x))
@@ -23,7 +23,7 @@ void	draw_line(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 	draw_des(img, p1, p2, dsp);
 }
 
-//draw line taking the y axis as increment.
+// Draws a steep line using vertical (Y-axis) increments
 static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	int		cursor;
@@ -43,7 +43,7 @@ static void	draw_asc(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 	}
 }
 
-//draw line taking the x axis as increment.
+// Draws a shallow line using horizontal (X-axis) increments
 static void	draw_des(t_imgd *img, t_point2 p1, t_point2 p2, t_ivec2 dsp[2])
 {
 	float	cursor;

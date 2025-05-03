@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:54:49 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:06:18 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:15:52 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define MAP_H
 
 # include "fdf.h"
+
+# define ERR_EMPTY_LINE "\033[31merror :\033[0m empty line in file\n"
+# define ERR_INVALID_PT "\033[31merror :\033[0m invalid point in file\n"
+# define ERR_INVALID_CHAR "\033[31merror :\033[0m invalid character in file\n"
+# define ERR_INVALID_FD "\033[31merror :\033[0m invalid file\n"
+# define ERR_INVALID_SIZE "\033[31merror :\033[0m map size to small\n"
+# define ERR "\033[31merror\033[0m\n"
 
 typedef struct s_map
 {
@@ -23,7 +30,6 @@ typedef struct s_map
 }	t_map;
 
 //___________PARSING___________
-//_____________________________
 
 //map_parsing.c
 
@@ -40,7 +46,6 @@ int			is_map_point(char *r_map, int i);
 int			is_map_valid(char *r_map);
 
 //___________MAP_CUSTOM__________
-//_______________________________
 
 int			adapt_map(char **r_map, t_map *map);
 

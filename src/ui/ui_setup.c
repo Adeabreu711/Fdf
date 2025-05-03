@@ -6,13 +6,14 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:34:05 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:02:22 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:53:24 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-char	*join_str_int(char *txt, int nb)
+// Join a string and an int, return the new allocated string
+static char	*join_str_int(char *txt, int nb)
 {
 	char	*mrg;
 	char	*tmp;
@@ -23,6 +24,7 @@ char	*join_str_int(char *txt, int nb)
 	return (mrg);
 }
 
+// Update zoom percentage string in UI based on camera scale
 void	refresh_ui_zoom(t_cam *cam, t_ui *ui)
 {
 	float	percent;
@@ -39,6 +41,7 @@ void	refresh_ui_zoom(t_cam *cam, t_ui *ui)
 	free(tmp);
 }
 
+// Update projection name in UI based on current projection ID
 void	refresh_ui_prj(t_cam *cam, t_ui *ui)
 {
 	if (ui->prj_nm)
@@ -51,6 +54,7 @@ void	refresh_ui_prj(t_cam *cam, t_ui *ui)
 		ui->prj_nm = ft_strdup("Flat");
 }
 
+// Initialize the UI struct with map, camera, and file data
 t_ui	init_ui(t_cam *cam, t_map *map, t_rdr *rdr, char *fd_name)
 {
 	t_ui	ui;

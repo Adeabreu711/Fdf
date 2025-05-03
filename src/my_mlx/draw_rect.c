@@ -6,13 +6,14 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:37:35 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/04/29 02:22:51 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:40:22 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static t_point2	new_pt2(t_ivec2 v2, int color)
+// Creates a t_point2 from a position and color
+static t_point2	npt2(t_ivec2 v2, int color)
 {
 	t_point2	pt;
 
@@ -21,29 +22,49 @@ static t_point2	new_pt2(t_ivec2 v2, int color)
 	return (pt);
 }
 
-static void	draw_edge(t_imgd *img, t_ivec2 p1, t_ivec2 p2, t_ivec2 dsp[2])
+// Draws a rectangle outline with given width and color between two corners
+void	draw_rect(t_mlxinfo *mlx, t_ivec2 crns[2], int width, int color)
 {
-	draw_line(img, new_pt2(p1, 0xFFFFFF), new_pt2(p2, 0xFFFFFF), dsp);
-}
-
-void	draw_rect(t_imgd *img, t_ivec2 crns[2], int width, t_ivec2 dsp[2])
-{
+	t_ivec2	dsp[2];
+	t_ivec2	tr;
+	t_ivec2	bl;
 	int		i;
-	t_ivec2	top_right;
-	t_ivec2	bottom_left;
 
-	top_right = ft_nivec2(crns[1].x, crns[0].y);
-	bottom_left = ft_nivec2(crns[0].x, crns[1].y);
 	i = -1;
+	dsp[0] = ft_nivec2(-1, 0);
+	dsp[1] = ft_nivec2(mlx->w_dim.x, mlx->w_dim.y);
+	tr = ft_nivec2(crns[1].x, crns[0].y);
+	bl = ft_nivec2(crns[0].x, crns[1].y);
 	while (++i < width)
 	{
-		draw_edge(img, ft_nivec2(crns[0].x - i, crns[0].y - i),
-			ft_nivec2(top_right.x + i, top_right.y - i), dsp);
-		draw_edge(img, ft_nivec2(top_right.x + i, top_right.y - i),
-			ft_nivec2(crns[1].x + i, crns[1].y + i), dsp);
-		draw_edge(img, ft_nivec2(crns[1].x + i, crns[1].y + i),
-			ft_nivec2(bottom_left.x - i, bottom_left.y + i), dsp);
-		draw_edge(img, ft_nivec2(bottom_left.x - i, bottom_left.y + i),
-			ft_nivec2(crns[0].x - i, crns[0].y - i), dsp);
+		draw_line(&mlx->img, npt2(ft_nivec2(crns[0].x - i, crns[0].y - i),
+				color), npt2(ft_nivec2(tr.x + i, tr.y - i), color), dsp);
+		draw_line(&mlx->img, npt2(ft_nivec2(tr.x + i, tr.y - i), color),
+			npt2(ft_nivec2(crns[1].x + i, crns[1].y + i), color), dsp);
+		draw_line(&mlx->img, npt2(ft_nivec2(crns[1].x + i, crns[1].y + i),
+				color), npt2(ft_nivec2(bl.x - i, bl.y + i), color), dsp);
+		draw_line(&mlx->img, npt2(ft_nivec2(bl.x - i, bl.y + i), color),
+			npt2(ft_nivec2(crns[0].x - i, crns[0].y - i), color), dsp);
+	}
+}
+
+// Draws a filled rectangle between two corners
+void	draw_frect(t_mlxinfo *mlx, t_ivec2 crns[2], int color)
+{
+	t_ivec2	dsp[2];
+	t_ivec2	curr;
+	int		y;
+
+	dsp[0] = ft_nivec2(0, 0);
+	dsp[1] = ft_nivec2(mlx->w_dim.x, mlx->w_dim.y);
+	y = crns[0].y;
+	while (y <= crns[1].y)
+	{
+		curr = ft_nivec2(crns[0].x, y);
+		draw_line(&mlx->img,
+			npt2(curr, color),
+			npt2(ft_nivec2(crns[1].x, y), color),
+			dsp);
+		y++;
 	}
 }

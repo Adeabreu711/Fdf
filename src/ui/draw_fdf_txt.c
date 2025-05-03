@@ -6,20 +6,22 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:19:18 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:33:00 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:52:08 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	draw_text(t_mlxinfo *mlx, char *str, t_ivec3 info)
+// Draw text at given screen position with color
+static void	draw_text(t_mlxinfo *mlx, char *str, t_ivec3 info)
 {
 	info.x *= mlx->w_sf;
 	info.y *= mlx->w_sf;
 	mlx_string_put(mlx->mlx, mlx->window, info.x, info.y, info.z, str);
 }
 
-void	draw_ui_ctrl(t_fdf *fdf, int color)
+// Draw control instructions at the bottom of the screen
+static void	draw_ui_ctrl(t_fdf *fdf, int color)
 {
 	draw_text(&fdf->mlx, "Move : [WASD]", ft_nivec3(20, 527, color));
 	draw_text(&fdf->mlx, "Rotate : X[O/K] Y[I/L] Z[<-/->]",
@@ -31,6 +33,7 @@ void	draw_ui_ctrl(t_fdf *fdf, int color)
 	draw_text(&fdf->mlx, "show tris : [T]", ft_nivec3(850, 527, color));
 }
 
+// Draw UI text info such as file name, stats, and labels
 void	draw_ui_txt(t_fdf *fdf)
 {
 	if (fdf->ui.fd_nm)

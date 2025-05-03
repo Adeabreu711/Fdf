@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 17:26:50 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:33:00 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:15:13 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_fdf
 	t_mlxinfo	mlx;
 }	t_fdf;
 
-//UI
+//___________UI___________
+//________________________
 
 void		draw_ui_box(t_fdf *fdf);
 void		draw_ui_txt(t_fdf *fdf);

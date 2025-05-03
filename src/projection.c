@@ -6,25 +6,27 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:48:14 by alex              #+#    #+#             */
-/*   Updated: 2025/04/29 19:12:27 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:07:34 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <math.h>
 
-t_ivec2	project_vibrant(t_ctrl cam, t_fvec3 v3);
-t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3);
-t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3);
+static t_ivec2	project_sinus(t_ctrl cam, t_fvec3 v3);
+static t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3);
+static t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3);
 
+// Set projection functions for different views.
 void	init_projections(t_rdr *rdr)
 {
 	rdr->prj[0] = project_iso;
-	rdr->prj[1] = project_vibrant;
+	rdr->prj[1] = project_sinus;
 	rdr->prj[2] = project_flat;
 }
 
-t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3)
+// Isometric projection function.
+static t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2		v2;
 	float		angle;
@@ -36,7 +38,8 @@ t_ivec2	project_iso(t_ctrl cam, t_fvec3 v3)
 	return (v2);
 }
 
-t_ivec2	project_vibrant(t_ctrl cam, t_fvec3 v3)
+// Sinusoidal projection function.
+static t_ivec2	project_sinus(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2	v2;
 	float	dist;
@@ -50,7 +53,8 @@ t_ivec2	project_vibrant(t_ctrl cam, t_fvec3 v3)
 	return (v2);
 }
 
-t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3)
+// Flat projection function.
+static t_ivec2	project_flat(t_ctrl cam, t_fvec3 v3)
 {
 	t_ivec2	v2;
 

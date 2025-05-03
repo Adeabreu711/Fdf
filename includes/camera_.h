@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:58:21 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:04:09 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:14:44 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,11 @@ t_cam		new_cam(t_point2 *pts, t_ivec2 tl_crn, t_ivec2 br_crn);
 void		free_cam(t_cam *cam);
 void		set_min_max_xy(t_map *map, t_ivec2 mm[4], t_prj_func f);
 t_ivec2		get_min_max_z(t_map *map);
+void		center_map_pivot(t_map *map);
 
 //projection.c
 
 void		init_projections(t_rdr *rdr);
-t_ivec2		project_iso(t_ctrl cam, t_fvec3 v3);
-t_ivec2		project_cavalier(t_ctrl cam, t_fvec3 v3);
 
 //rotation.c
 
@@ -89,7 +88,6 @@ t_fvec3		rotate(t_fvec3 v3, float rota, char axis);
 int			display_points(t_imgd *img, t_cam *cam, t_map *map);
 
 //___________MAP_CUSTOM__________
-//_______________________________
 
 //color_map.c
 

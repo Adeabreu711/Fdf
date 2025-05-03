@@ -6,13 +6,13 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 22:47:00 by alex              #+#    #+#             */
-/*   Updated: 2025/05/02 02:03:47 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:04:41 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-//create a new cam with the given params.
+// Create a new camera with the given parameters (points and corners)
 t_cam	new_cam(t_point2 *pts, t_ivec2 tl_crn, t_ivec2 br_crn)
 {
 	t_cam	cam;
@@ -31,7 +31,7 @@ t_cam	new_cam(t_point2 *pts, t_ivec2 tl_crn, t_ivec2 br_crn)
 	return (cam);
 }
 
-//free the given cam and reset settings.
+// Free the camera and reset all settings to default
 void	free_cam(t_cam *cam)
 {
 	if (cam->pts)
@@ -47,7 +47,7 @@ void	free_cam(t_cam *cam)
 	cam->ctrl.prj_id = 0;
 }
 
-// return the the minimum and maximum values of the map.
+// Return the the minimum and maximum values of the map.
 // [0]min_x, [1]max_x
 // [2]min_y, [3]max_y
 void	set_min_max_xy(t_map *map, t_ivec2 mm[4], t_prj_func f)
@@ -74,6 +74,7 @@ void	set_min_max_xy(t_map *map, t_ivec2 mm[4], t_prj_func f)
 	}
 }
 
+// Get the minimum and maximum z values from the map
 t_ivec2	get_min_max_z(t_map *map)
 {
 	t_ivec2	min_max;
@@ -89,4 +90,22 @@ t_ivec2	get_min_max_z(t_map *map)
 			min_max.y = map->pts[i].v3.z;
 	}
 	return (min_max);
+}
+
+// Center the map by adjusting the points relative to the pivot.
+void	center_map_pivot(t_map *map)
+{
+	int		i;
+	t_fvec3	pivot;
+
+	pivot.x = (float)(map->row_len / 2);
+	pivot.y = (float)((map->size / map->row_len) / 2);
+	pivot.z = 0;
+	i = -1;
+	while (++i < map->size)
+	{
+		map->pts[i].v3.x -= pivot.x;
+		map->pts[i].v3.y -= pivot.y;
+		map->pts[i].v3.z -= pivot.z;
+	}
 }

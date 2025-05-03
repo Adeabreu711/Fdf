@@ -6,7 +6,7 @@
 /*   By: alde-abr <alde-abr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:50:53 by alde-abr          #+#    #+#             */
-/*   Updated: 2025/05/02 02:36:18 by alde-abr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:40:50 by alde-abr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	reset_rotation(t_map *map, t_cam *cam);
 void	apply_rotation(t_map *map, t_cam *cam, char axis, float angle);
-void	apply_projection(t_map *map, t_cam *cam, t_prj_func);
+void	apply_projection(t_map *map, t_cam *cam, t_prj_func f);
 
 // Close the window, free allocated resources, and exit the program
 int	close_window(t_fdf *fdf)
